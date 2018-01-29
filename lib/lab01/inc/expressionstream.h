@@ -11,6 +11,8 @@ private:
     std::string::iterator next_int;
     std::string::iterator next_op;
 
+    void update_pos_next();
+
 public:
     explicit expressionstream(const std::string &string_in);
 
