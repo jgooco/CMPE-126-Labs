@@ -19,8 +19,6 @@ public:
     std::string str() const;
     void str (const std::string& s);
 
-    bool integer_is_next();
-    bool operator_is_next();
     bool end_is_next();
 
     std::string get_next_int();
