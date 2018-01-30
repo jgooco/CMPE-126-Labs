@@ -12,12 +12,14 @@ protected:
     virtual void SetUp() {
         stream1=new expressionstream("1+2+3");
         stream2=new expressionstream("1   + 2 *4+(2*3)");
+        stream3=new expressionstream("-1 +-2");
     }
 
 
 public:
     expressionstream *stream1;
     expressionstream *stream2;
+    expressionstream *stream3;
 };
 
 
@@ -47,8 +49,11 @@ TEST_F(Lab01Fixture, basicTest) {
     EXPECT_EQ("(",stream2->get_next_op());
     EXPECT_EQ("*",stream2->get_next_op());
     EXPECT_EQ(")",stream2->get_next_op());
-}
 
+    EXPECT_EQ("+", stream3->get_next_op());
+    EXPECT_EQ("-1", stream3->get_next_int());
+    EXPECT_EQ("-2", stream3->get_next_int());
+}
 
 TEST_F(Lab01Fixture, isNext) {
     EXPECT_FALSE(stream1->expression_complete());

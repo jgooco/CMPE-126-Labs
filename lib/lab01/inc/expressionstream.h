@@ -12,6 +12,7 @@ private:
     std::string::iterator pos_next;
     std::string::iterator pos_next_int;
     std::string::iterator pos_next_op;
+    bool is_first_int;
 
     void update_pos_next();
     void find_next_int();
