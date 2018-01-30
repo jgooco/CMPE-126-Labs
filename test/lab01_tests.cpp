@@ -51,14 +51,14 @@ TEST_F(Lab01Fixture, basicTest) {
 
 
 TEST_F(Lab01Fixture, isNext) {
-    //EXPECT_FALSE(stream1->end_is_next());
+    EXPECT_FALSE(stream1->end_is_next());
     stream1->get_next_int();
     stream1->get_next_int();
     stream1->get_next_int();
-    //EXPECT_FALSE(stream1->end_is_next());
+    EXPECT_FALSE(stream1->end_is_next());
     stream1->get_next_op();
     stream1->get_next_op();
-    //EXPECT_FALSE(stream1->end_is_next());
+    EXPECT_TRUE(stream1->end_is_next());
 }
 
 
