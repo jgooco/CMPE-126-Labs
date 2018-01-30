@@ -1,16 +1,18 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.9)
 project(cmpe126s18_labs)
 
+#add_definitions(-std=c++11)
 if(WIN32)
     if (CYGWIN)
         add_definitions(-std=gnu++0x)
     elseif(MINGW)
         add_definitions(-std=c++11)
-    endif(CYGWIN)
-elseif(APPLE)
+    endif (CYGWIN)
+endif(WIN32)
+if(APPLE)
     add_definitions(-DGTEST_USE_OWN_TR1_TUPLE)
     add_definitions(-D__GLIBCXX__)
-endif(WIN32)
+endif(APPLE)
 
 set(SOURCE_FILES main.cpp)
 
