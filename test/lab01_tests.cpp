@@ -51,20 +51,17 @@ TEST_F(Lab01Fixture, basicTest) {
 
 
 TEST_F(Lab01Fixture, isNext) {
-    EXPECT_FALSE(stream1->end_is_next());
+    EXPECT_FALSE(stream1->expression_complete());
     stream1->get_next_int();
     stream1->get_next_int();
     stream1->get_next_int();
-    EXPECT_FALSE(stream1->end_is_next());
+    EXPECT_FALSE(stream1->expression_complete());
     stream1->get_next_op();
     stream1->get_next_op();
-    EXPECT_TRUE(stream1->end_is_next());
+    EXPECT_TRUE(stream1->expression_complete());
 }
 
 
-TEST(Lab01Fixture, TestTest) {
-
-}
 //todo: create a new test
 //step 1: press alt+insert (or right click and select generate)
 //step 2: choose test to generate a new test where the cursor is

@@ -25,7 +25,7 @@ public:
     std::string str() const;
     void str (const std::string& s);
 
-    bool end_is_next();
+    bool expression_complete();
 
     std::string get_next_int();
     std::string get_next_op();
