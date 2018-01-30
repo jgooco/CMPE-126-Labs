@@ -8,9 +8,10 @@ expressionstream::expressionstream(const std::string &string_in) : buffer(string
     pos_next = buffer.begin();
     pos_next_int= buffer.begin();
     pos_next_op = buffer.begin();
+    is_first_int = true;
     align_next_op();
     align_next_int();
-    is_first_int = true;
+
 }
 
 /*returns current buffer as a string. This will return the entire expression.*/
@@ -76,11 +77,11 @@ void expressionstream::find_next_op() {
 
 void expressionstream::align_next_int() {
     bool op_found=false; //is_neg == negative number found, op_found == operator already found(helps with negative numbers)
-    while (pos_next_int != buffer.end() && !is_digit(*pos_next_int) && !((op_found||!is_first_int) && *pos_next_int =='-')){//not end of file && not a digit(beginning of a number) && not a negative number beginning
+    while (pos_next_int != buffer.end() && !is_digit(*pos_next_int) && !((op_found||is_first_int) && *pos_next_int =='-')){//not end of file && not a digit(beginning of a number) && not a negative number beginning
         if(is_operator(*pos_next_int))op_found= true;
         pos_next_int++;
     }
-    is_first_int =false;
+    is_first_int=false;
 }
 
 void expressionstream::align_next_op() {
