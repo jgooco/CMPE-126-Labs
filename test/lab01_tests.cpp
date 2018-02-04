@@ -76,6 +76,6 @@ TEST_F(Lab01Fixture, isNext) {
 
 TEST_F(Lab01Fixture, testTest) {
     expressionstream stream4("1+2*4");
-
-    EXPECT_EQ("1",stream4.get_next_int());
+    EXPECT_NE("2",stream3->get_next_int());
+    EXPECT_NE("0",stream3->get_next_int());
 }
