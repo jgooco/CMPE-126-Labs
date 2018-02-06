@@ -22,6 +22,7 @@ public:
     void swap(unsigned pos1, unsigned pos2);
     stringVector &operator = (stringVector const &rhs);
     std::string& operator[](unsigned position);
+    void bubble_sort();
 };
 
 
