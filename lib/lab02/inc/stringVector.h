@@ -18,7 +18,8 @@ public:
     unsigned capacity();
     void resize();
     bool empty();
-    stringVector &operator = (stringVector &rhs);
+    void append(std::string data);
+    stringVector &operator = (stringVector const &rhs);
     std::string& operator[](unsigned position);
 };
 

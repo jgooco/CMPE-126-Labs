@@ -31,3 +31,7 @@ stringVector &stringVector::operator=(stringVector const &rhs) {
 std::string &stringVector::operator[](unsigned position) {
     //return ;
 }
+
+void stringVector::append(std::string data) {
+
+}
