@@ -24,7 +24,7 @@ bool stringVector::empty() {
     //return ;
 }
 
-void stringVector::append(std::string data) {
+void stringVector::append(std::string new_data) {
 
 }
 
