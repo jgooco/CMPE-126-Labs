@@ -16,7 +16,7 @@ unsigned stringVector::capacity() {
     //return ;
 }
 
-void stringVector::resize() {
+void stringVector::resize(unsigned new_size) {
 
 }
 

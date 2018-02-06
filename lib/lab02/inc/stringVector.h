@@ -16,7 +16,7 @@ public:
 
     unsigned size();
     unsigned capacity();
-    void resize();
+    void resize(unsigned new_size);
     bool empty();
     void append(std::string data);
     void swap(unsigned pos1, unsigned pos2);
