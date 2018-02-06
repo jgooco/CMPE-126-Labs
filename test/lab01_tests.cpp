@@ -108,6 +108,6 @@ TEST_F(Lab01Fixture, Test4){
 
 TEST_F(Lab01Fixture, Test5){
     expressionstream stream5("42");
-    EXPECT_NE("10", stream5.get_next_int());
+    EXPECT_NE("12", stream5.get_next_int());
 
 }
