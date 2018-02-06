@@ -73,3 +73,41 @@ TEST_F(Lab01Fixture, isNext) {
 //step 3: type "Lab01Fixture" in the red box and press tab to go to next auto fill box
 //step 4: type name of your test
 //step 5: inside the function create your test, use previous test as examples
+TEST_F(Lab01Fixture, Test1) {
+    expressionstream stream1 ("6 + 7 * 9");
+    EXPECT_EQ("6", stream1.get_next_int());
+    EXPECT_EQ("+", stream1.get_next_op());
+    EXPECT_EQ("7", stream1.get_next_int());
+    EXPECT_EQ("*", stream1.get_next_op());
+    EXPECT_EQ("9", stream1.get_next_int());
+
+}
+TEST_F(Lab01Fixture, Test2){
+    expressionstream stream2("201*21+91");
+    EXPECT_EQ("201", stream2.get_next_int());
+    EXPECT_EQ("*", stream2.get_next_op());
+    EXPECT_EQ("21", stream2.get_next_int());
+    EXPECT_EQ("+", stream2.get_next_op());
+    EXPECT_EQ("91", stream2.get_next_int());
+
+}
+TEST_F(Lab01Fixture, Test3){
+    expressionstream streamf("58 + 74");
+    EXPECT_EQ("58", streamf.get_next_int());
+    EXPECT_EQ("+", streamf.get_next_op());
+    EXPECT_EQ("74", streamf.get_next_int());
+}
+TEST_F(Lab01Fixture, Test4){
+    expressionstream streaml("28");
+    expressionstream streamm("42");
+    EXPECT_GT("30", streaml.get_next_int());
+    EXPECT_GT("69", streamm.get_next_int());
+
+
+}
+
+TEST_F(Lab01Fixture, Test5){
+    expressionstream stream5("42");
+    EXPECT_NE("10", stream5.get_next_int());
+
+}
