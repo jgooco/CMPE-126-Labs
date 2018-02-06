@@ -40,6 +40,6 @@ std::string &stringVector::operator[](unsigned position) {
     //return ;
 }
 
-void stringVector::bubble_sort() {
+void stringVector::sort() {
 
 }
