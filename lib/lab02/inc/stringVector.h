@@ -19,6 +19,7 @@ public:
     void resize();
     bool empty();
     void append(std::string data);
+    void swap(unsigned pos1, unsigned pos2);
     stringVector &operator = (stringVector const &rhs);
     std::string& operator[](unsigned position);
 };

@@ -1,10 +1,10 @@
 #include "stringVector.h"
 
-stringVector::~stringVector() {
+stringVector::stringVector() {
 
 }
 
-stringVector::stringVector() {
+stringVector::~stringVector() {
 
 }
 
@@ -24,14 +24,18 @@ bool stringVector::empty() {
     //return ;
 }
 
+void stringVector::append(std::string data) {
+
+}
+
+void stringVector::swap(unsigned pos1, unsigned pos2) {
+
+}
+
 stringVector &stringVector::operator=(stringVector const &rhs) {
     //return ;
 }
 
 std::string &stringVector::operator[](unsigned position) {
     //return ;
-}
-
-void stringVector::append(std::string data) {
-
 }
