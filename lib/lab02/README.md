@@ -20,7 +20,7 @@ public:
 
     unsigned size()-return the number of strings stored in array
     unsigned capacity() -return number of strings currently allocated to be stored in array
-    void resize() - Allows user to choose the allocation size, if it is small than current array then data should be truncated to fit
+    void reserve() - Allows user to choose the allocation size, if it is small than current array then data should be truncated to fit
     bool empty() - returns true IFF the array is empty
     void append(std::string data) - append data to end of array, double array capacity if this is over capacity
     void swap(unsigned pos1, unsigned pos2) - swaps the data at position with position 2, throw exception if either position is out of bounds
