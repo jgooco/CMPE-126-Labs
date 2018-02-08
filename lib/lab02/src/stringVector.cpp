@@ -1,10 +1,10 @@
-#include "stringVector.h"
+#include "../inc/stringVector.h"
 
-stringVector::~stringVector() {
+stringVector::stringVector() {
 
 }
 
-stringVector::stringVector() {
+stringVector::~stringVector() {
 
 }
 
@@ -16,12 +16,20 @@ unsigned stringVector::capacity() {
     //return ;
 }
 
-void stringVector::resize() {
+void stringVector::reserve(unsigned new_size) {
 
 }
 
 bool stringVector::empty() {
     //return ;
+}
+
+void stringVector::append(std::string new_data) {
+
+}
+
+void stringVector::swap(unsigned pos1, unsigned pos2) {
+
 }
 
 stringVector &stringVector::operator=(stringVector const &rhs) {
@@ -32,6 +40,6 @@ std::string &stringVector::operator[](unsigned position) {
     //return ;
 }
 
-void stringVector::append(std::string data) {
+void stringVector::sort() {
 
 }

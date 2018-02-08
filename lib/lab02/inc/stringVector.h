@@ -16,11 +16,13 @@ public:
 
     unsigned size();
     unsigned capacity();
-    void resize();
+    void reserve(unsigned new_size);
     bool empty();
-    void append(std::string data);
+    void append(std::string new_data);
+    void swap(unsigned pos1, unsigned pos2);
     stringVector &operator = (stringVector const &rhs);
     std::string& operator[](unsigned position);
+    void sort();
 };
 
 

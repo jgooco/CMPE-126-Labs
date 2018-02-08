@@ -20,8 +20,9 @@ public:
 
     unsigned size()-return the number of strings stored in array
     unsigned capacity() -return number of strings currently allocated to be stored in array
-    void resize() - Allows user to choose the allocation size, if it is small than current array then data should be truncated to fit
+    void reserve() - Allows user to choose the allocation size, if it is small than current array then data should be truncated to fit
     bool empty() - returns true IFF the array is empty
     void append(std::string data) - append data to end of array, double array capacity if this is over capacity
     stringVector &operator = (stringVector &rhs) - Copies RHS to object calling the function (this should be a hard COPY, creating a separate object with same values)
     std::string& operator[](unsigned position) -return a reference to the string at this position, throw an exception if out of bounds
+    sort() - use the bubble sort function discussed in lab to sort the vector like a dictionary (lower letters and less letters first)
