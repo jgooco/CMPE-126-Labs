@@ -39,6 +39,6 @@ This class will be used for future labs so it is important that it is tested tho
 
 **stringVector &operator = (stringVector &rhs)** - Copies RHS to object calling the function (this should be a hard COPY, creating a separate object with same values)
 
-**std::string& operator[](unsigned position)** -return a reference to the string at this position, throw an exception if out of bounds
+**std::string& operator\[ \](unsigned position)** -return a reference to the string at this position, throw an exception if out of bounds
 
 **void sort()** - use the bubble sort function discussed in lab to sort the vector like a dictionary (lower letters and less letters first)
