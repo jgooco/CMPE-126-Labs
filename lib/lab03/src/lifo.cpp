@@ -18,19 +18,19 @@ namespace lab3{
     }
 
     lifo &lifo::operator=(const lifo &right) {
-        return <#initializer#>;
+        //return <#initializer#>;
     }
 
     bool lifo::is_empty() const {
-        return false;
+        //return false;
     }
 
     unsigned lifo::size() const {
-        return 0;
+        //return 0;
     }
 
     std::string lifo::top() const {
-        return std::__cxx11::string();
+        //return std::__cxx11::string();
     }
 
     void lifo::push(std::string input) {

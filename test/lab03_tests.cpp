@@ -13,7 +13,3 @@ protected:
 
 public:
 };
-
-
-TEST(crashTest , constructorTest) {
-}
