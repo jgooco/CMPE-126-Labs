@@ -51,31 +51,30 @@ bool stringVector::empty() const {
 
 void stringVector::append(std::string new_data) {
     std::string *temp = nullptr;
-    if(length == allocated_length){
-        if(allocated_length == 0){
-            temp = new std::string[1];
-            temp[length] = new_data;
-            allocated_length = allocated_length + 1;
-            data = temp;//populate data
+    if (length == allocated_length){
+        if (allocated_length==0){
+            data = new std::string[10];
+            allocated_length = 10;
         }
-        else{
-            temp = new std::string[2*allocated_length];
-            for(int i=0; i<length; i++){
-                temp[i] = data[i];
+        else {
+            temp = new std::string[2 * allocated_length];
+            for (int i=0; i<length; i++){
+                temp[i]= data [i];
             }
-            allocated_length = 2 * allocated_length;
-            delete[]data;
+            allocated_length = 2* allocated_length;
+            if(data!=NULL)
+                delete []data;
             data = temp;
-            data[length] = new_data;
         }
-        length = length + 1;
     }
+    data[length] = new_data;
+    length++;
 }
 
 void stringVector::swap(unsigned pos1, unsigned pos2)
 {
     std::string str;
-    if((pos1 >= length) || (pos2 >= length)){
+    if((pos1 >= allocated_length) || (pos2 >= allocated_length)){
         std::cout << "Index Out of bounds" << std::endl;
         return;
     }
@@ -99,11 +98,11 @@ stringVector& stringVector::operator = (stringVector const &rhs)
 
 std::string& stringVector::operator[](unsigned position)
 {
-    if(position > length){
-        throw std::out_of_range("Position out of range");
-    }
+   // if(position > length){
+   //     throw std::out_of_range("Position out of range");
+    //}
 
-    return data[position - 1];
+    return data[position];
 }
 
 

@@ -16,6 +16,8 @@ TEST(stringVector,overloadBracket){
     EXPECT_EQ("Changed",hw1[0]);
 }
 
+
+
 TEST(stringVector,variableAllocation){
     stringVector hw2;
     hw2.append("Test 1");
