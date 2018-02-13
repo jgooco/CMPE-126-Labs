@@ -57,7 +57,7 @@ void stringVector::append(std::string new_data) {
                 temp[i]= data [i];
             }
             allocated_length = 2* allocated_length;
-            if(data!=NULL)
+            if(data!= nullptr)
                 delete []data;
             data = temp;
         }
