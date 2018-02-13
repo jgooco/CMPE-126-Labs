@@ -22,25 +22,20 @@ unsigned stringVector::capacity() const{
     //return ;
 }
 
-void stringVector::reserve(unsigned new_size)
-{
-    auto *temp = new std::string[new_size]; // Create a new array
-
-/*Copy the contents of the array*/
-    for(int i =0; i < new_size; i++){
-        if(i < length){
+void stringVector::reserve(unsigned new_size) {
+    std::string *temp = new std::string[new_size];
+    for (int i =0; i<new_size; i++){
+        if (i < length){
             temp[i] = data[i];
         }
         else
             break;
     }
-
-    delete []data ;// Delete previous array
+    delete[]data;
     data = temp;
-
     allocated_length = new_size;
 
-    if(length > new_size){
+    if (length>new_size){
         length = new_size;
     }
 }
@@ -53,8 +48,8 @@ void stringVector::append(std::string new_data) {
     std::string *temp = nullptr;
     if (length == allocated_length){
         if (allocated_length==0){
-            data = new std::string[10];
-            allocated_length = 10;
+            data = new std::string[1];
+            allocated_length = 1;
         }
         else {
             temp = new std::string[2 * allocated_length];
@@ -76,7 +71,7 @@ void stringVector::swap(unsigned pos1, unsigned pos2)
     std::string str;
     if((pos1 >= allocated_length) || (pos2 >= allocated_length)){
         std::cout << "Index Out of bounds" << std::endl;
-        return;
+        throw 42;
     }
 
     str = data[pos1];
@@ -98,9 +93,9 @@ stringVector& stringVector::operator = (stringVector const &rhs)
 
 std::string& stringVector::operator[](unsigned position)
 {
-   // if(position > length){
-   //     throw std::out_of_range("Position out of range");
-    //}
+    if(position > length){
+        throw 69;
+    }
 
     return data[position];
 }
