@@ -9,11 +9,11 @@ namespace lab2 {
 
     }
 
-    unsigned stringVector::size() {
+    unsigned stringVector::size() const{
         //return ;
     }
 
-    unsigned stringVector::capacity() {
+    unsigned stringVector::capacity() const{
         //return ;
     }
 
@@ -21,7 +21,7 @@ namespace lab2 {
 
     }
 
-    bool stringVector::empty() {
+    bool stringVector::empty() const{
         //return ;
     }
 
