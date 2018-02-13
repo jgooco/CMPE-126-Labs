@@ -1,6 +1,8 @@
 #include <iostream>
+#include "stringVector.h"
 
 int main() {
-    std::cout << "Hello Thursday everyone!";
-    return 6;
+    stringVector sample;
+    sample.append(std::string("example 1"));
+    std::cout << sample[0] << std::endl;
 }

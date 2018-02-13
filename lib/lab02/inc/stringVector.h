@@ -13,7 +13,6 @@ private:
 public:
     stringVector();
     virtual ~stringVector();
-
     unsigned size()const;
     unsigned capacity()const;
     void reserve(unsigned new_size);

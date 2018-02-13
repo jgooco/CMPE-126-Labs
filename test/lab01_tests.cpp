@@ -53,6 +53,7 @@ TEST_F(Lab01Fixture, basicTest) {
     EXPECT_EQ("+", stream3->get_next_op());
     EXPECT_EQ("-1", stream3->get_next_int());
     EXPECT_EQ("-2", stream3->get_next_int());
+
 }
 
 TEST_F(Lab01Fixture, isNext) {
