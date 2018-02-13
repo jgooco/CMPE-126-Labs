@@ -22,26 +22,30 @@ unsigned stringVector::capacity() const{
     //return ;
 }
 
-void stringVector::reserve(unsigned new_size)
-{
-    std::string *temp = new std::string[new_size]; // Create a new array
-
-/*Copy the contents of the array*/
-    for(int i =0; i < new_size; i++){
-        if(i < length){
-            temp[i] = data[i];
-        }
-        else
-            break;
+void stringVector::reserve(unsigned new_size) {
+    if (new_size == 0){
+        length = 0;
+        allocated_length = 0;
+        delete [] this->data;
+        this->data = nullptr;
+        return;
     }
-
-    delete []data ;// Delete previous array
-    data = temp;
-
-    allocated_length = new_size;
-
-    if(length > new_size){
-        length = new_size;
+    else if (new_size == allocated_length){
+        //If the user wants the new size to be size it already is, nothing needs to be done
+        return;
+    }
+    else{
+        auto * temp = new std::string[new_size];
+        if (new_size < length){length = new_size;}
+        //If new size is less than the original, the original data will need to be truncated
+        for (int i=0;i<length;i++){
+            temp[i] = data[i];
+            //Copy old data to new array
+        }
+        delete [] this->data;
+        data = temp;
+        //Delete old array and point the data pointer to the newly allocated array
+        allocated_length = new_size;
     }
 }
 
@@ -49,31 +53,17 @@ bool stringVector::empty() const {
     return length == 0;
 }
 
-void stringVector::append(std::string new_data)
-{
-    std::string *temp = nullptr;
+void stringVector::append(std::string new_data) {
+    if (allocated_length > length){
 
-    if(length == allocated_length){
-
-        if(allocated_length == 0){
-            data = new std::string[10];
-            allocated_length = 10;
-        }
-        else{
-            temp = new std::string[2 * allocated_length]; // Create a new array with double the size
-            for(int i = 0; i < length ; i++){
-                temp[i] = data[i];
-            }
-            allocated_length = 2 * allocated_length;
-
-            if(data != nullptr)
-                delete []data;
-            data = temp;
-        }
+        data[length] = new_data;
+        length++;
+        return;
     }
-
-    data[length] = new_data;
-    length++;
+    else{
+        this->reserve(allocated_length>0?allocated_length*2:1);
+        this->append(new_data);
+    }
 }
 
 void stringVector::swap(unsigned pos1, unsigned pos2)
