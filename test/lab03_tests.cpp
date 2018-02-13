@@ -2,14 +2,14 @@
 #include "fifo.h"
 #include "lifo.h"
 
-class Lab03Fixture : public ::testing::Test {
 
-protected:
-    virtual void SetUp() {
+namespace lab3 {
+
+    TEST(fifo, constructorTest) {
+        fifo constructor;
+        EXPECT_TRUE(constructor.is_empty());
+
     }
 
-    virtual void TearDown() {
-    }
 
-public:
-};
+}
