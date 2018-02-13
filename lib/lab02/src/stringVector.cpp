@@ -22,30 +22,26 @@ unsigned stringVector::capacity() const{
     //return ;
 }
 
-void stringVector::reserve(unsigned new_size) {
-    if (new_size == 0){
-        length = 0;
-        allocated_length = 0;
-        delete [] this->data;
-        this->data = nullptr;
-        return;
-    }
-    else if (new_size == allocated_length){
-        //If the user wants the new size to be size it already is, nothing needs to be done
-        return;
-    }
-    else{
-        auto * temp = new std::string[new_size];
-        if (new_size < length){length = new_size;}
-        //If new size is less than the original, the original data will need to be truncated
-        for (int i=0;i<length;i++){
+void stringVector::reserve(unsigned new_size)
+{
+    auto *temp = new std::string[new_size]; // Create a new array
+
+/*Copy the contents of the array*/
+    for(int i =0; i < new_size; i++){
+        if(i < length){
             temp[i] = data[i];
-            //Copy old data to new array
         }
-        delete [] this->data;
-        data = temp;
-        //Delete old array and point the data pointer to the newly allocated array
-        allocated_length = new_size;
+        else
+            break;
+    }
+
+    delete []data ;// Delete previous array
+    data = temp;
+
+    allocated_length = new_size;
+
+    if(length > new_size){
+        length = new_size;
     }
 }
 
@@ -54,15 +50,25 @@ bool stringVector::empty() const {
 }
 
 void stringVector::append(std::string new_data) {
-    if (allocated_length > length){
-
-        data[length] = new_data;
-        length++;
-        return;
-    }
-    else{
-        this->reserve(allocated_length>0?allocated_length*2:1);
-        this->append(new_data);
+    std::string *temp = nullptr;
+    if(length == allocated_length){
+        if(allocated_length == 0){
+            temp = new std::string[1];
+            temp[length] = new_data;
+            allocated_length = allocated_length + 1;
+            data = temp;//populate data
+        }
+        else{
+            temp = new std::string[2*allocated_length];
+            for(int i=0; i<length; i++){
+                temp[i] = data[i];
+            }
+            allocated_length = 2 * allocated_length;
+            delete[]data;
+            data = temp;
+            data[length] = new_data;
+        }
+        length = length + 1;
     }
 }
 
