@@ -2,9 +2,7 @@
 
 namespace lab3{
     fifo::fifo() {
-
-
-
+    //Reserve 100 spaces in fifo_storage
     }
 
     fifo::fifo(std::string input_string) {
@@ -24,10 +22,6 @@ namespace lab3{
     }
 
     bool fifo::is_empty() const {
-        if ( = NULL){
-            return true;
-        }
-        return false;
         //return false;
     }
 
