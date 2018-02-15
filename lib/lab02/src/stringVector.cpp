@@ -1,5 +1,6 @@
 #include <iostream>
 #include "../inc/stringVector.h"
+
 namespace lab2 {
     stringVector::stringVector() {
         data = nullptr;

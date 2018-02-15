@@ -2,9 +2,9 @@
 
 namespace lab3{
     fifo::fifo() {
-        lab2::stringVector fifo_storage = nullptr;
-        front_index = 0;
-        back_index = 0;
+
+
+
     }
 
     fifo::fifo(std::string input_string) {
@@ -24,6 +24,10 @@ namespace lab3{
     }
 
     bool fifo::is_empty() const {
+        if ( = NULL){
+            return true;
+        }
+        return false;
         //return false;
     }
 
