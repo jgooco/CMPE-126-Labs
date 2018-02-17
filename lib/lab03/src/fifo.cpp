@@ -1,11 +1,18 @@
 #include "fifo.h"
+#include "stringVector.h"
 
 namespace lab3{
     fifo::fifo() {
+        lab2::stringVector fifo_storage;
+        fifo_storage.reserve(100);
+        front_index = 0;
+        back_index = 0;
     //Reserve 100 spaces in fifo_storage
     }
 
     fifo::fifo(std::string input_string) {
+        fifo_storage.reserve(100);
+        fifo_storage[back_index]= input_string;
 
     }
 
