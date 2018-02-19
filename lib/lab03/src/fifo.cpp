@@ -4,7 +4,7 @@
 namespace lab3{
     fifo::fifo() {
         lab2::stringVector fifo_storage;
-        fifo_storage.reserve(100);
+        fifo_storage.set_size(100);
         front_index = 0;
         back_index = 0;
     //Reserve 100 spaces in fifo_storage
@@ -21,6 +21,9 @@ namespace lab3{
     }
 
     fifo::~fifo() {
+        fifo_storage.set_size(100);
+        front_index = -1;
+        back_index = -1;
 
     }
 
@@ -41,6 +44,10 @@ namespace lab3{
     }
 
     void fifo::enqueue(std::string input) {
+        if (back_index == 1){
+            back_index = 0;
+            front_index = back_index;
+        }
 
     }
 

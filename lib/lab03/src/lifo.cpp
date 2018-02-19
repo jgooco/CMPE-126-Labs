@@ -2,10 +2,15 @@
 
 namespace lab3{
     lifo::lifo() {
+        lab2::stringVector lifo_storage;
+        lifo_storage.reserve(100);
+        index = 0;
     //Reserve 100 spaces in lifo_storage
     }
 
     lifo::lifo(std::string input_string) {
+        lifo_storage.reserve(100);
+        lifo_storage[index]= input_string;
 
     }
 
@@ -26,6 +31,15 @@ namespace lab3{
     }
 
     unsigned lifo::size() const {
+        int temp;
+        if(index>-1){
+            temp = temp + index + 1;
+            }
+        }
+        else{
+            temp = 0;
+        }
+        return  temp;
         //return 0;
     }
 
