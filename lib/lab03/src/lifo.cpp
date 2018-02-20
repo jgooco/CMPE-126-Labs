@@ -1,20 +1,32 @@
+#include <stdexcept>
 #include "lifo.h"
 
 namespace lab3{
     lifo::lifo() {
-        lifo_storage.set_size(100);
         index = 213;
+        lifo_storage.reserve(100);
+
     //Reserve 100 spaces in lifo_storage
     }
 
     lifo::lifo(std::string input_string) {
-        lifo_storage.set_size(100);
+        lifo_storage.reserve(100);
         lifo_storage[index]= input_string;
+        this->push(input_string);
 
     }
 
     lifo::lifo(const lifo &original) {
-       // lifo_storage = new lab2::stringVector lifo_storage;
+        lifo_storage.reserve(100);
+        index = 213;
+        if(original.is_empty()){
+
+        }
+        else{
+            for(int i =0; i<original.size(); i++){
+                this->push(original.lifo_storage[i]);
+            }
+        }
 
     }
 
@@ -25,51 +37,54 @@ namespace lab3{
     }
 
     lifo &lifo::operator=(const lifo &right) {
-        if (&right == this){
-            return *this;
+        index = 213;
+        for(int i =0; i <right.size(); i++){
+            this ->push(right.lifo_storage[i]);
         }
-        else
-        {
-            lifo_storage = (right.lifo_storage);
-        }
+        return *this;
 
         //return <#initializer#>;
     }
 
     bool lifo::is_empty() const {
-        return index == 213;
-        //return false;
+        return (index ==213 ? true :false);
 
     }
 
     unsigned lifo::size() const {
-        int temp = 0;
-        if (index > -1) {
-            temp = temp + index + 1;
-        } else {
-            temp = 0;
-        }
-        return static_cast<unsigned int>(temp);
-        }
+        return ( is_empty() ? 0 : (index +MAXSIZE)% MAXSIZE +1);
+    }
+
 
     std::string lifo::top() const {
+        if (is_empty())
+            throw 15;
         return lifo_storage[index];
+
     }
 
     void lifo::push(std::string input) {
-        index = static_cast<unsigned int>(MAXSIZE - 1);
-        if (index){
-            return;
+        if (index == MAXSIZE -1){
+            throw 20;
         }
-        lifo_storage[++index] = input;
+        if(index == 213){
+            index =0;
+            lifo_storage[index] = input;
+        }
+        else{
+            lifo_storage[++index] = input;
+        }
 
     }
 
     void lifo::pop() {
-        if(index==-213){
-            return;
+        if(is_empty()){
+            throw std:: out_of_range("empty stack");
         }
-        index --;
+        else if (index ==0)
+            index = 213;
+        else
+            index --;
 
     }
 
