@@ -15,7 +15,7 @@ namespace lab3 {
         fifo(const fifo &original);                     //Copy constructor
         virtual ~fifo();                                //Destructor
         fifo &operator=(const fifo &right);            //Assignment operator
-        bool is_full() const;
+
         bool is_empty() const;  // Return true if the fifo is empty and false if it is not
         unsigned size() const;  // Return the size of the fifo
 
