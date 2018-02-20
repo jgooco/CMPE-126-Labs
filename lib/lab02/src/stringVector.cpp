@@ -88,8 +88,8 @@ namespace lab2 {
             this->data[i] = rhs.data[i];
     }
 
-    std::string &stringVector::operator[](unsigned position) {
-        if (position > length) {
+    std::string &stringVector::operator[](unsigned position) const {
+        if (position > allocated_length) {
             throw 69;
         }
 

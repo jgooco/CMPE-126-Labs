@@ -6,6 +6,7 @@ namespace lab3 {
     class lifo {
         lab2::stringVector lifo_storage;
         unsigned index;
+        int MAXSIZE= 100;
     public:
         lifo();                                          //Default constructor. Reserve 100 spaces in lifo_storage
         explicit lifo(std::string input_string);        //Create new lifo from string input
