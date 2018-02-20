@@ -22,7 +22,7 @@ namespace lab3{
         front_index = original.front_index;
         back_index = original.back_index;
         if(original.is_empty()){
-            throw 67;
+
 
         }
         else{
@@ -88,9 +88,7 @@ namespace lab3{
     }
 
     void fifo::enqueue(std::string input) {
-        if((back_index +1) % MAXSIZE ==front_index){
-            throw 30;
-        }
+
         if(is_empty()){
             front_index =0;
             back_index = 0;
