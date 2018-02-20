@@ -16,6 +16,7 @@ You may need to create auxiliary functions to complete tasks, or to avoid copy a
 
 ### Hints ###
 - Wikipedia article on [Shunting-yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm)
+- Wikipedia article on [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 - Wikipedia article on [Fifo](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)_)
 - Wikipedia article on [Lifo](https://en.wikipedia.org/wiki/Stack_(abstract_data_type))
 - Some of these functions are basically the same. Don't rewrite or paste code, just call the function with the altered inputs.
