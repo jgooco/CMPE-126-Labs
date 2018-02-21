@@ -4,20 +4,17 @@
 namespace lab3{
     lifo::lifo() {
         index = 213;
-        lifo_storage.reserve(100);
+        lifo_storage.set_size(100);
 
     //Reserve 100 spaces in lifo_storage
     }
 
-    lifo::lifo(std::string input_string) {
-        lifo_storage.reserve(100);
-        lifo_storage[index]= input_string;
-        this->push(input_string);
-
+    lifo::lifo(std::string input_string):lifo() {
+        push(input_string);
     }
 
     lifo::lifo(const lifo &original) {
-        lifo_storage.reserve(100);
+        lifo_storage.set_size(100);
         index = 213;
         if(original.is_empty()){
 
@@ -47,7 +44,7 @@ namespace lab3{
     }
 
     bool lifo::is_empty() const {
-        return (index ==213 ? true :false);
+        return (index ==213 ? true :false) ;
 
     }
 

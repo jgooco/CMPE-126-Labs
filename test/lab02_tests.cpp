@@ -51,7 +51,7 @@ namespace lab2 {
         hw4->reserve(6);
         EXPECT_EQ(5, hw4->size());
         EXPECT_EQ(6, hw4->capacity());
-        EXPECT_EQ("", (*hw4)[5]);
+        EXPECT_ANY_THROW((*hw4)[5]);
         delete hw4;
     }
 
@@ -59,12 +59,13 @@ namespace lab2 {
         stringVector hw5;
         hw5.reserve(2);
         hw5.append("Test String");
+        hw5.append("Test test string");
         EXPECT_EQ("Test String", hw5[0]);
-        EXPECT_EQ("", hw5[1]);
+        EXPECT_EQ("Test test string", hw5[1]);
         EXPECT_THROW(hw5[2], int);
 
         EXPECT_NO_THROW(hw5.swap(0, 1));
-        EXPECT_EQ("", hw5[0]);
+        EXPECT_EQ("Test test string", hw5[0]);
         EXPECT_EQ("Test String", hw5[1]);
         EXPECT_THROW(hw5.swap(0, 2), int);
     }

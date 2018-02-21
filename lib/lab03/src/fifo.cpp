@@ -3,14 +3,14 @@
 
 namespace lab3{
     fifo::fifo() {
-        fifo_storage.reserve(100);
+        fifo_storage.set_size(100);
         front_index = 123;
         back_index = 123;
     //Reserve 100 spaces in fifo_storage
     }
 
     fifo::fifo(std::string input_string) {
-        fifo_storage.reserve(100);
+        fifo_storage.set_size(100);
         front_index = 123;
         back_index = 123;
         enqueue(input_string);
@@ -18,9 +18,11 @@ namespace lab3{
     }
 
     fifo::fifo(const fifo &original) {
-        fifo_storage.reserve(100);
+        (*this) = original;
+        /*fifo_storage.set_size(100);
         front_index = original.front_index;
         back_index = original.back_index;
+
         if(original.is_empty()){
 
 
@@ -31,7 +33,7 @@ namespace lab3{
                 int current = (front_index + 1) %MAXSIZE;
                 fifo_storage[current] = original.fifo_storage[current];
             }
-        }
+        }*/
 
 
     }

@@ -25,19 +25,17 @@ namespace lab2 {
 
     void stringVector::reserve(unsigned new_size) {
         std::string *temp = new std::string[new_size];
-        for (int i = 0; i < new_size; i++) {
-            if (i < length) {
-                temp[i] = data[i];
-            } else
-                break;
+        if (new_size< length){
+            length =new_size;
         }
-        delete[]data;
+        for (int i=0; i<length; i++){
+            temp[i] = data[i];
+        }
+        delete[] this -> data;
         data = temp;
         allocated_length = new_size;
 
-        if (length > new_size) {
-            length = new_size;
-        }
+
     }
 
     bool stringVector::empty() const {
@@ -89,7 +87,7 @@ namespace lab2 {
     }
 
     std::string &stringVector::operator[](unsigned position) const {
-        if (position > allocated_length) {
+        if (position >= length) {
             throw 69;
         }
 
@@ -97,9 +95,10 @@ namespace lab2 {
     }
 
     void lab2::stringVector::set_size(unsigned new_size) {
-        length = new_size;
+        //length = new_size;
         if(allocated_length != new_size)
             reserve(new_size);
+        length = new_size;
     }
 
     void stringVector::sort() {
