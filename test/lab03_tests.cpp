@@ -19,6 +19,7 @@ namespace lab3 {
         EXPECT_NO_THROW(obj2.enqueue("String2"));
         EXPECT_NO_THROW(obj2.enqueue("String3"));
         EXPECT_NO_THROW(obj2.enqueue("String4"));
+        EXPECT_NO_THROW((obj2.enqueue("me")));
     }
 
     TEST(fifo,dequeueTest){
