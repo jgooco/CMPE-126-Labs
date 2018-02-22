@@ -1,5 +1,3 @@
-
-
 #include <string>
 #include "calculator.h"
 namespace lab4 {
