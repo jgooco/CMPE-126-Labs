@@ -22,6 +22,7 @@ include_directories(lib/lab01/inc lib/lab02/inc lib/lab03/inc)
 add_subdirectory(lib/lab01 lab1_lib)
 add_subdirectory(lib/lab02 lab2_lib)
 add_subdirectory(lib/lab03 lab3_lib)
+add_subdirectory(lib/lab04 lab4_lib)
 
 add_subdirectory(test)
 
