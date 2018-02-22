@@ -24,48 +24,47 @@ public:
 
 
 TEST(crashTest , constructorTest) {
-    lab1::expressionstream stream1 ("1+2+3");
-    lab1::expressionstream stream2 ("1   + 2 *4+(2*3)");
+lab1::expressionstream stream1 ("1+2+3");
+lab1::expressionstream stream2 ("1   + 2 *4+(2*3)");
 }
 
 
 TEST_F(Lab01Fixture, basicTest) {
-    EXPECT_EQ("1",stream1->get_next_int());
-    EXPECT_EQ("2",stream1->get_next_int());
-    EXPECT_EQ("3",stream1->get_next_int());
+EXPECT_EQ("1",stream1->get_next_int());
+EXPECT_EQ("2",stream1->get_next_int());
+EXPECT_EQ("3",stream1->get_next_int());
 
-    EXPECT_EQ("+",stream1->get_next_op());
-    EXPECT_EQ("+",stream1->get_next_op());
+EXPECT_EQ("+",stream1->get_next_op());
+EXPECT_EQ("+",stream1->get_next_op());
 //todo: Get these tests to pass using the debugger
-    EXPECT_EQ("1",stream2->get_next_int());
-    EXPECT_EQ("2",stream2->get_next_int());
-    EXPECT_EQ("4",stream2->get_next_int());
-    EXPECT_EQ("2",stream2->get_next_int());
-    EXPECT_EQ("3",stream2->get_next_int());
+EXPECT_EQ("1",stream2->get_next_int());
+EXPECT_EQ("2",stream2->get_next_int());
+EXPECT_EQ("4",stream2->get_next_int());
+EXPECT_EQ("2",stream2->get_next_int());
+EXPECT_EQ("3",stream2->get_next_int());
 
-    EXPECT_EQ("+",stream2->get_next_op());
-    EXPECT_EQ("*",stream2->get_next_op());
-    EXPECT_EQ("+",stream2->get_next_op());
-    EXPECT_EQ("(",stream2->get_next_op());
-    EXPECT_EQ("*",stream2->get_next_op());
-    EXPECT_EQ(")",stream2->get_next_op());
+EXPECT_EQ("+",stream2->get_next_op());
+EXPECT_EQ("*",stream2->get_next_op());
+EXPECT_EQ("+",stream2->get_next_op());
+EXPECT_EQ("(",stream2->get_next_op());
+EXPECT_EQ("*",stream2->get_next_op());
+EXPECT_EQ(")",stream2->get_next_op());
 
-    EXPECT_EQ("+", stream3->get_next_op());
-    EXPECT_EQ("-1", stream3->get_next_int());
-    EXPECT_EQ("-2", stream3->get_next_int());
+EXPECT_EQ("+", stream3->get_next_op());
+EXPECT_EQ("-1", stream3->get_next_int());
+EXPECT_EQ("-2", stream3->get_next_int());
+
 }
 
 TEST_F(Lab01Fixture, isNext) {
-    EXPECT_FALSE(stream1->expression_complete());
-    stream1->get_next_int();
-    stream1->get_next_int();
-    stream1->get_next_int();
-    EXPECT_FALSE(stream1->expression_complete());
-    stream1->get_next_op();
-    stream1->get_next_op();
-    EXPECT_TRUE(stream1->expression_complete());
-
-
+EXPECT_FALSE(stream1->expression_complete());
+stream1->get_next_int();
+stream1->get_next_int();
+stream1->get_next_int();
+EXPECT_FALSE(stream1->expression_complete());
+stream1->get_next_op();
+stream1->get_next_op();
+EXPECT_TRUE(stream1->expression_complete());
 }
 
 
@@ -77,7 +76,7 @@ TEST_F(Lab01Fixture, isNext) {
 //step 5: inside the function create your test, use previous test as examples
 
 TEST_F(Lab01Fixture, testTest) {
-    lab1::expressionstream stream4("1+2*4");
-    EXPECT_NE("2",stream3->get_next_int());
-    EXPECT_NE("0",stream3->get_next_int());
+lab1::expressionstream stream4("1+2*4");
+EXPECT_NE("2",stream3->get_next_int());
+EXPECT_NE("0",stream3->get_next_int());
 }
