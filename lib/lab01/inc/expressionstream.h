@@ -19,6 +19,8 @@ namespace lab1 {
     public:
         explicit expressionstream(const std::string &string_in);
 
+        bool more_next_tokens_remaining();
+
         std::string get_next_token();
 
         std::string get_current_token();
@@ -30,6 +32,8 @@ namespace lab1 {
         bool next_token_is_paren_open();
 
         bool next_token_is_paren_close();
+
+
     };
 }
 #endif //CMPE126S18_LABS_STSTRING_H

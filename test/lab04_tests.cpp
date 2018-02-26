@@ -3,7 +3,7 @@
 #include "lifo.h"
 #include "calculator.h"
 
-namespace lab4 {
+/*namespace lab4 {
     TEST(calculator,additionTest) {
         lab4::calculator obj1("1+9+22");
         EXPECT_EQ(32,obj1.calculate());
@@ -45,4 +45,4 @@ namespace lab4 {
         lab4::calculator obj7("-(10+20)");
         EXPECT_EQ(-30,obj7.calculate());
     }
-}
+}*/

@@ -13,6 +13,10 @@ namespace lab1 {
         while (*next_position == ' ' && next_position != buffer.end()) ++next_position;
     }
 
+    bool expressionstream::more_next_tokens_remaining(){
+        return current_pos != buffer.end();
+    }
+
     std::string expressionstream::get_number() {
         bool is_negative = false;
         std::string::iterator number_start;
@@ -100,7 +104,11 @@ namespace lab1 {
         return *next_position == ')';
     }
 
+
+
     bool is_number(char c) {
         return (c >= '0' && c <= '9');
     }
+
+
 }
