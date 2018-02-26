@@ -1,8 +1,10 @@
 set(HEADER_FILES
-        inc/calculator.h)
+        inc/calculator.h
+		inc/expressionParser.h)
 
 set(SOURCE_FILES
-        src/calculator.cpp)
+        src/calculator.cpp
+		src/expressionParser.cpp)
 
 include_directories(inc)
 add_library(lab4_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})
