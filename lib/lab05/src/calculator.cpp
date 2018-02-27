@@ -42,5 +42,6 @@ namespace lab5{
     std::string get_operator(std::string input_string);
 
     int operator_priority(std::string operator_in);
+
 }
 

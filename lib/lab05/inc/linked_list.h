@@ -26,7 +26,7 @@ namespace lab5 {
 
         void insert(const std::string input, unsigned location = 0 );
         void append(const std::string input);
-        void remove(unsigned location);
+        void remove(unsigned location = 0);
 
         void sort();
     };
