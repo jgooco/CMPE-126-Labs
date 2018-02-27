@@ -24,7 +24,7 @@ namespace lab4{
         friend std::ostream& operator<<(std::ostream& stream, calculator& RHS); //Stream out overload. Should return in the format "Infix: #,#,#,#\nPostfix: #,#,#,#"
 
         //AUX Functions
-        bool TryParse(const std::string &symbol);
+
     };
 }
 

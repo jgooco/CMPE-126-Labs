@@ -49,29 +49,43 @@ namespace lab4 {
     void calculator::parse_to_infix(std::string &input_expression) {
         std::string::iterator position = input_expression.begin();
         std::string::iterator end = input_expression.end();
-        for (position; position != end && *position == ' '; position ++)
-        {
-            is_number(*position);
+
+        for(position; position != end && *position == ' '; position++){
+            if(is_number(std::string(position, position+1))){
+                infix_expression.enqueue(std::string(position, position+1));
+            }
         }
 
     }
 
     void calculator::convert_to_postfix(lab3::fifo infix_expression) {
         parse_to_infix(inputString);
-        std::istringstream iss(inputString);
-        lab2::stringVector tokens;
-        while(iss){
-            std::string temp;
-            iss >> temp;
-            infix_expression.enqueue(temp);
-        }
-        lab2::stringVector output;
-        lab3::lifo s;
+        lab3::lifo temp;
+        while(infix_expression){
+            if(is_number(inputString)){
+                temp.push(inputString);
+            }
+            if(is_operator(inputString)){
+                while((infix_expression.top())){
 
-        for(unsigned int i = 0; i<tokens.size(); i++){
-            if(TryParse(tokens[i]))
-                output.
+                }
+            }
+            if(){
+
+            }
+            if(){
+                while(){
+
+                }
+            }
+
         }
+        if (){
+            while(){
+
+            }
+        }
+
 
 
     }
