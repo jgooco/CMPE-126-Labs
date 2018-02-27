@@ -28,7 +28,7 @@ bool is_operator(std::string input_string){
            input_string == "-" ||
            input_string == "*" ||
            input_string == "/" ||
-           input_string == "%"
+           input_string == "%";
 }
 
 int get_number(std::string input_string);
@@ -59,30 +59,39 @@ namespace lab4 {
     }
 
     void calculator::convert_to_postfix(lab3::fifo infix_expression) {
-        parse_to_infix(inputString);
-        lab3::lifo temp;
-        while(infix_expression){
+        lab3::lifo stack;
+        int size = infix_expression.size();
+        int count =0;
+        std::string temp[size];
+        lab1::expressionstream post(temp[size]);
+        std::string tStack = stack.top();
+        while(inputString){
+            post.get_current_token();
             if(is_number(inputString)){
-                temp.push(inputString);
+                stack.push(inputString);
             }
             if(is_operator(inputString)){
-                while((infix_expression.top())){
-
+                while((operator_priority(tStack) > operator_priority(inputString))
+                        || (operator_priority(tStack) = operator_priority(inputString) &&
+                                                 )){
+                   stack.pop();
+                   infix_expression.enqueue(inputString);
                 }
+                //temp.push();
             }
-            if(){
-
+            if(){//token is '('
+                //push
             }
-            if(){
-                while(){
-
+            if(){//token is ')'
+                while(){//operator is not '('
+                    //pop
                 }
             }
 
         }
-        if (){
-            while(){
-
+        if (){//no more tokens
+            while(){//still operator tokens
+                //pop operator to que
             }
         }
 
