@@ -30,4 +30,4 @@ namespace lab5 {
     };
 }
 
-#endif //CMPE126F17_LABS_LIB_LAB05_INC_STACK_H
+#endif
