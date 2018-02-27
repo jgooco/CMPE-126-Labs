@@ -48,4 +48,8 @@ namespace lab5 {
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
         return stream;
     }
+
+    void linked_list::sort() {
+
+    }
 }

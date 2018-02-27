@@ -4,6 +4,9 @@
 #include "linked_list.h"
 namespace lab5 {
     class queue {
+    private:
+        linked_list storage_structure;
+
     public:
         queue();
         queue(std::string &data);

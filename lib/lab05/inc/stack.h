@@ -1,25 +1,28 @@
-#ifndef CMPE126S18_LABS_STACK_H
-#define CMPE126S18_LABS_STACK_H
+#ifndef CMPE126S18_LABS_LIB_LAB05_INC_STACK_H
+#define CMPE126S18_LABS_LIB_LAB05_INC_STACK_H
+
 #include "linked_list.h"
-
-namespace lab3 {
+namespace lab5 {
     class stack {
-        lab2::stringVector lifo_storage;
-        unsigned index;
+    private:
+        linked_list storage_structure;
+
     public:
-        lifo();                                          //Default constructor. Reserve 100 spaces in lifo_storage
-        explicit lifo(std::string input_string);        //Create new lifo from string input
-        lifo(const lifo &original);                     //Copy constructor
-        virtual ~lifo();                                //Destructor
-        lifo &operator=(const lifo &right);            //Assignment operator
+        stack();
+        stack(std::string &data);
+        stack(const stack &original);
+        virtual ~stack();
+        stack &operator=(const stack &RHS);
 
-        bool is_empty();  // Return true if the lifo is empty and false if it is not
-        int size();  // Return the size of the lifo
+        bool isEmpty() const;
+        unsigned queueSize() const;
 
-        std::string top();        // Return the top of the lifo.
-        void push(std::string input);   // Add input string to the top of the string
-        void pop();                     // Remove the top string from the lifo
+        std::string top() const;
+        void enqueue(const std::string &data);
+        void dequeue();
+
+        friend std::ostream& operator<<(std::ostream& stream, stack& RHS);
+        friend std::istream& operator>>(std::istream& stream, stack& RHS);
     };
 }
-
 #endif

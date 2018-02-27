@@ -11,7 +11,7 @@ set(SOURCE_FILES
         src/stack.cpp
         src/queue.cpp
         src/calculator.cpp
-        )
+		src/calculator.cpp)
 include_directories(inc)
 add_library(lab5_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})
 target_link_libraries(lab5_lib lab1_lib)
