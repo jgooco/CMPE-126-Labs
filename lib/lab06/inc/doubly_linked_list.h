@@ -35,8 +35,8 @@ namespace lab6{
 
         doubly_linked_list operator+(const doubly_linked_list &rhs) const;
         doubly_linked_list& operator=(const doubly_linked_list &rhs);
-        doubly_linked_list operator+=(const doubly_linked_list &rhs);
-        doubly_linked_list operator==(const doubly_linked_list &rhs);
+        doubly_linked_list& operator+=(const doubly_linked_list &rhs);
+        bool operator==(const doubly_linked_list &rhs);
 
         friend std::ostream& operator<<(std::ostream& stream, doubly_linked_list& RHS);
         friend std::istream& operator>>(std::istream& stream, doubly_linked_list& RHS);

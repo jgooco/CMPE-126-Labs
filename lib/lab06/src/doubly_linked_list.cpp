@@ -67,7 +67,7 @@ namespace lab6{
     }
 
     void doubly_linked_list::sort() {
-
+        // Implement Insertion Sort
     }
 
     doubly_linked_list doubly_linked_list::operator+(const doubly_linked_list &rhs) const {
@@ -78,11 +78,11 @@ namespace lab6{
 
     }
 
-    doubly_linked_list doubly_linked_list::operator+=(const doubly_linked_list &rhs) {
+    doubly_linked_list& doubly_linked_list::operator+=(const doubly_linked_list &rhs) {
 
     }
 
-    doubly_linked_list doubly_linked_list::operator==(const doubly_linked_list &rhs) {
+    bool doubly_linked_list::operator==(const doubly_linked_list &rhs) {
 
     }
 
