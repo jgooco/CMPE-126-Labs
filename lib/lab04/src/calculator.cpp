@@ -2,6 +2,7 @@
 #include <string>
 #include <sstream>
 #include "calculator.h"
+#include "expressionstream.h"
 #include <fifo.h>
 
 bool is_number(std::string input_string) {
@@ -49,20 +50,37 @@ int operator_priority(std::string operator_in) {
 
 namespace lab4 {
     void calculator::parse_to_infix(std::string &input_expression) {
-        std::string::iterator position = input_expression.begin();
-        std::string::iterator end = input_expression.end();
 
-        for (position; position != end && *position == ' '; position++) {
-            if (is_number(std::string (position, position + 1))) {
-                infix_expression.enqueue(std::string(position, position + 1));
+        std::stringstream ss;
+        ss.str(input_expression);
+
+        int num;
+        char op;
+
+        for(int i = 0; i < input_expression.length(); i++){
+            if(isdigit(ss.peek())){
+                ss >> num;
+                infix_expression.enqueue(std::to_string(num));
+            }
+            else{
+                ss >> op;
+                infix_expression.enqueue(std::string(1,op));
             }
         }
+
+        std::cout << std::endl;
+        for(int i = 0; i < infix_expression.size(); i++){
+            std::cout << infix_expression.top();
+            infix_expression.dequeue();
+        }
+
 
     }
 
     void calculator::convert_to_postfix(lab3::fifo infix_expression) {
         lab3::lifo opstack;
-        std::string current_token;
+        lab1::expressionstream es(inputString);
+        /*std::string current_token;
         while (!infix_expression.is_empty()) {
             current_token = infix_expression.top();
             infix_expression.dequeue();
@@ -93,7 +111,7 @@ namespace lab4 {
         while(!opstack.is_empty()){
             postfix_expression.enqueue(opstack.top());
             opstack.pop();
-        }
+        }*/
 
 
     }
