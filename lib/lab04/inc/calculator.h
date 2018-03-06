@@ -23,7 +23,9 @@ namespace lab4{
         int calculate(); //Return the calculation of the postfix expression
         friend std::ostream& operator<<(std::ostream& stream, calculator& RHS); //Stream out overload. Should return in the format "Infix: #,#,#,#\nPostfix: #,#,#,#"
 
+
         //AUX Functions
+
 
     };
 }

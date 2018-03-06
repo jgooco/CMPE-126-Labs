@@ -3,13 +3,14 @@
 #include "lifo.h"
 #include "calculator.h"
 
-/*namespace lab4 {
+namespace lab4 {
     TEST(calculator,additionTest) {
-        lab4::calculator obj1("1+9+22");
-        EXPECT_EQ(32,obj1.calculate());
+        std::string test1 = "9+10";
+        lab4::calculator obj1(test1);
+        EXPECT_EQ(10,obj1.calculate());
     }
 
-    TEST(calculator,subtractionTest){
+    /*TEST(calculator,subtractionTest){
         lab4::calculator obj2("5-3-6");
         EXPECT_EQ(-4,obj2.calculate());
     }
@@ -44,5 +45,5 @@
         //Other operators aside from '(' are invalid if leading
         lab4::calculator obj7("-(10+20)");
         EXPECT_EQ(-30,obj7.calculate());
-    }
-}*/
+    }*/
+}

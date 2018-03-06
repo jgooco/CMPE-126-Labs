@@ -3,7 +3,7 @@
 
 namespace lab3{
     lifo::lifo() {
-        index = 213;
+        index = 0;
         lifo_storage.set_size(100);
 
         //Reserve 100 spaces in lifo_storage
@@ -15,7 +15,7 @@ namespace lab3{
 
     lifo::lifo(const lifo &original) {
         lifo_storage.set_size(100);
-        index = 213;
+        index = 0;
         if(original.is_empty()){
 
         }
@@ -34,7 +34,7 @@ namespace lab3{
     }
 
     lifo &lifo::operator=(const lifo &right) {
-        index = 213;
+        index = 0;
         for(int i =0; i <right.size(); i++){
             this ->push(right.lifo_storage[i]);
         }
@@ -44,7 +44,7 @@ namespace lab3{
     }
 
     bool lifo::is_empty() const {
-        return (index ==213 ? true :false) ;
+        return (index ==0 ? true :false) ;
 
     }
 
@@ -64,7 +64,7 @@ namespace lab3{
         if (index == MAXSIZE -1){
             throw 20;
         }
-        if(index == 213){
+        if(index == 0){
             index =0;
             lifo_storage[index] = input;
         }
@@ -79,7 +79,7 @@ namespace lab3{
             throw std:: out_of_range("empty stack");
         }
         else if (index ==0)
-            index = 213;
+            index = 0;
         else
             index --;
 

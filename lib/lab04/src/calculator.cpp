@@ -4,11 +4,47 @@
 #include "calculator.h"
 #include <fifo.h>
 
-bool is_number(std::string input_string);
+bool is_number(std::string input_string) {
+    for (std::size_t i = 0; i < input_string.length(); i++) {
+        if (input_string[i] != '0'
+            && input_string[i] != '1'
+            && input_string[i] != '2'
+            && input_string[i] != '3'
+            && input_string[i] != '4'
+            && input_string[i] != '5'
+            && input_string[i] != '6'
+            && input_string[i] != '7'
+            && input_string[i] != '8'
+            && input_string[i] != '9'
+            && input_string[i] != '.') {
+            return false;
+        }
+    }
+    return true;
+}
 
-bool is_operator(std::string input_string);
 
-int operator_priority(std::string operator_in);
+bool is_operator(std::string input_string) {
+    return input_string == "+" ||
+           input_string == "-" ||
+           input_string == "*" ||
+           input_string == "/" ||
+           input_string == "%";
+}
+
+
+
+int operator_priority(std::string operator_in) {
+    if (operator_in == "^")
+        return 3;
+    if (operator_in == "*" || operator_in == "/")
+        return 2;
+    if (operator_in == "+" || operator_in == "-")
+        return 1;
+    else
+        return 0;
+}
+
 
 
 namespace lab4 {
@@ -17,7 +53,7 @@ namespace lab4 {
         std::string::iterator end = input_expression.end();
 
         for (position; position != end && *position == ' '; position++) {
-            if (is_number(std::string(position, position + 1))) {
+            if (is_number(std::string (position, position + 1))) {
                 infix_expression.enqueue(std::string(position, position + 1));
             }
         }
@@ -73,6 +109,10 @@ namespace lab4 {
 
     std::istream &operator>>(std::istream &stream, calculator &RHS) {
         std::string input;
+        while (stream.peek()!= EOF){
+            
+        }
+
 
         /*std::string input;
 
@@ -86,7 +126,44 @@ namespace lab4 {
     }
 
     int lab4::calculator::calculate() {
-        return 0;
+        for(int i = 0; i< postfix_expression.size(); i++){
+            std::string token = postfix_expression.top();
+            if (is_operator(token)){
+                for(int j = 0; j<postfix_expression.size(); j++){
+                    std::string a = infix_expression.top();
+                    int c = std::stoi(a);
+                    infix_expression.dequeue();
+                    std::string b = infix_expression.top();
+                    int d = std::stoi(b);
+                    infix_expression.dequeue();
+                    if(is_operator(token) == '+') {
+                        int e = c + d;
+                        std::string f =std::to_string(e);
+                        infix_expression.enqueue(f);
+                    }
+                    else if(is_operator(token) == '-') {
+                        int e = c- d;
+                        std::string f = std::to_string(e);
+                        infix_expression.enqueue(f);
+                    }
+                    else if(is_operator(token) == '*') {
+                        int e = c * d;
+                        std::string f = std::to_string(e);
+                        infix_expression.enqueue(f);
+                    }
+                    else if(is_operator(token) == '/') {
+                        int e = c / d;
+                        std::string f = std::to_string(e);
+                        infix_expression.enqueue(f);
+                    }
+
+                }
+                
+            }
+            else
+                infix_expression.enqueue(token);
+        }
+        infix_expression.dequeue();
     }
 
     std::ostream &operator<<(std::ostream &stream, calculator &RHS) {
@@ -95,48 +172,7 @@ namespace lab4 {
 
 
     // AUXILIARY FUNCTIONS
-    bool is_number(std::string input_string) {
-        for (std::size_t i = 0; i < input_string.length(); i++) {
-            if (input_string[i] != '0'
-                && input_string[i] != '1'
-                && input_string[i] != '2'
-                && input_string[i] != '3'
-                && input_string[i] != '4'
-                && input_string[i] != '5'
-                && input_string[i] != '6'
-                && input_string[i] != '7'
-                && input_string[i] != '8'
-                && input_string[i] != '9'
-                && input_string[i] != '.') {
-                return false;
-            }
-        }
-        return true;
-    }
 
-
-    bool is_operator(std::string input_string) {
-        return input_string == "+" ||
-               input_string == "-" ||
-               input_string == "*" ||
-               input_string == "/" ||
-               input_string == "%";
-    }
-
-    int get_number(std::string input_string);
-
-    std::string get_operator(std::string input_string);
-
-    int operator_priority(std::string operator_in) {
-        if (operator_in == "^")
-            return 3;
-        if (operator_in == "*" || operator_in == "/")
-            return 2;
-        if (operator_in == "+" || operator_in == "-")
-            return 1;
-        else
-            return 0;
-    }
 
 }
 
