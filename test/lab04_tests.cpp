@@ -1,13 +1,14 @@
 #include "gtest/gtest.h"
+#include <iostream>
 #include "fifo.h"
 #include "lifo.h"
 #include "calculator.h"
 
 namespace lab4 {
     TEST(calculator,additionTest) {
-        std::string test1 = "9+10";
-        lab4::calculator obj1(test1);
-        EXPECT_EQ(10,obj1.calculate());
+        std::string test1("10+10");
+        lab4::calculator t1(test1);
+        EXPECT_EQ(20, t1.calculate());
     }
 
     /*TEST(calculator,subtractionTest){
@@ -45,5 +46,6 @@ namespace lab4 {
         //Other operators aside from '(' are invalid if leading
         lab4::calculator obj7("-(10+20)");
         EXPECT_EQ(-30,obj7.calculate());
-    }*/
+    }
+     */
 }

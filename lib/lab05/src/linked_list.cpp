@@ -7,6 +7,9 @@ namespace lab5 {
     }
 
     linked_list::linked_list(std::string &data) {
+        head= new node(data);
+        append(data);
+
 
 
     }
