@@ -4,15 +4,15 @@
 namespace lab3{
     fifo::fifo() {
         fifo_storage.set_size(100);
-        front_index = 0;
-        back_index = 0;
+        front_index = 123;
+        back_index = 123;
         //Reserve 100 spaces in fifo_storage
     }
 
     fifo::fifo(std::string input_string) {
         fifo_storage.set_size(100);
-        front_index = 0;
-        back_index = 0;
+        front_index = 123;
+        back_index = 123;
         enqueue(input_string);
 
     }
@@ -33,7 +33,7 @@ namespace lab3{
         front_index = right.front_index;
         back_index = right.back_index;
         if (right.is_empty()){
-            return *this;
+            throw 90;
         }
         else{
             int s= (back_index + MAXSIZE - front_index) & MAXSIZE +1;
@@ -46,7 +46,7 @@ namespace lab3{
     }
 
     bool fifo::is_empty() const {
-        return (front_index == 0 && back_index == 0);
+        return (front_index == 123 && back_index == 123);
 
 
         //return false;
@@ -65,7 +65,7 @@ namespace lab3{
 
 
     std::string fifo::top(){
-        if (front_index == 0)
+        if (front_index == 123)
             throw 6;
         return  fifo_storage[front_index];
 
@@ -84,11 +84,11 @@ namespace lab3{
 
     void fifo::dequeue() {
         if(is_empty()){
-            return;
+            throw 1;
         }
         else if(front_index == back_index){
-            front_index = 0;
-            back_index = 0;
+            front_index = 123;
+            back_index = 123;
 
         }else
             front_index = (front_index+1)%MAXSIZE;
