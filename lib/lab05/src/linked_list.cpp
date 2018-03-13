@@ -91,4 +91,8 @@ namespace lab5 {
 
 
     }
+
+    std::string linked_list::get_value_at(unsigned location) {
+
+    }
 }
