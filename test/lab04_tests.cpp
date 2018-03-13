@@ -6,9 +6,21 @@
 
 namespace lab4 {
     TEST(calculator,additionTest) {
-        std::string test1("10+10");
+        std::string test1("10 + 10");
         lab4::calculator t1(test1);
         EXPECT_EQ(20, t1.calculate());
+    }
+
+    TEST(calculator, subtest){
+        std::string test2("100 - 20");
+        lab4::calculator t2(test2);
+        EXPECT_EQ(80, t2.calculate());
+    }
+
+    TEST(calculator, multiplictiontest){
+        std::string test3("3 * 9");
+        lab4::calculator t3(test3);
+        EXPECT_EQ(27, t3.calculate());
     }
 
     /*TEST(calculator,subtractionTest){
