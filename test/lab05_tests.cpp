@@ -3,14 +3,9 @@
 #include "stack.h"
 #include "fancy_calculator.h"
 
-class Lab05Fixture : public ::testing::Test {
 
-protected:
-    virtual void SetUp() {
-    }
+namespace lab5 {
+    TEST(linkedlist, constructor_test);
 
-    virtual void TearDown() {
-    }
 
-public:
-};
+}

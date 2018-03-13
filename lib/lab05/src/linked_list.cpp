@@ -31,11 +31,19 @@ namespace lab5 {
 
 
     bool linked_list::isEmpty() const {
-        return false;
+        if (head)
+            return false;
     }
 
     unsigned linked_list::listSize() const {
-        return 0;
+        node* current = head;
+        unsigned int count =0;
+        while(current != nullptr){
+            count ++;
+            current = current->next;
+
+        }
+        return count;
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {

@@ -8,10 +8,6 @@ namespace lab5 {
     class linked_list {
         node *head, *tail;
 
-    private:
-
-
-
     public:
         linked_list();
 
