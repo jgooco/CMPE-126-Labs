@@ -42,11 +42,19 @@ namespace lab5 {
         node *temp = new node(input);
         temp->data = input;
         temp->next = nullptr;
+        if(location == 1){
+            temp->next = head;
+            head = temp;
+            return;
+        }
 
-
-
-
-
+        node* tmp = head;
+        while(tmp->next != NULL){
+            tmp = tmp->next;
+        }
+        temp->next = tmp->next;
+        tmp->next = temp;
+        return;
     }
 
     void linked_list::append(const std::string input) {
@@ -87,12 +95,46 @@ namespace lab5 {
         return stream;
     }
 
-    void linked_list::sort() {
+    node* selection_sort(node *head){ //AUX function
+        if(head->next == NULL)
+            return head;
+        node* min = head;
+        node* before_min = NULL;
+        node* ptr;
 
+        for(ptr=head; ptr->next != NULL; ptr = ptr->next){
+            if(ptr->next->data < min->data){
+                min = ptr->next;
+                before_min = ptr;
+            }
+        }
+        if(min != head){
+            swap_nodes(&head, head, min, before_min);
+        }
+
+        head->next = selection_sort(head->next);
+
+        return head;
+    }
+
+    void linked_list::sort() {
+        node** head_ref;
+        if((*head_ref) == NULL)
+            return;
+        *head_ref = selection_sort(*head_ref);
 
     }
 
     std::string linked_list::get_value_at(unsigned location) {
 
     }
+    //AUX functions
+
+    static void swap_nodes(node** head_ref, node* x, node* y, node* prevy){
+        *head_ref = y;
+        node* temp = y->next;
+        y->next = x->next;
+        x->next = temp;
+    }
+
 }

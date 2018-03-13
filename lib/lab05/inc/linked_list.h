@@ -8,6 +8,10 @@ namespace lab5 {
     class linked_list {
         node *head, *tail;
 
+    private:
+
+
+
     public:
         linked_list();
 
@@ -31,6 +35,7 @@ namespace lab5 {
         void remove(unsigned location = 0);
 
         void sort();
+
     };
 }
 
