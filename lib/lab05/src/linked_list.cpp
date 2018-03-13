@@ -9,9 +9,6 @@ namespace lab5 {
     linked_list::linked_list(std::string &data) {
         head= new node(data);
         append(data);
-
-
-
     }
 
     linked_list::linked_list(const linked_list &original) {
@@ -102,6 +99,13 @@ namespace lab5 {
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
         return stream;
     }
+    static void swap_nodes(node** head_ref, node* x, node* y, node* prevy){ //AUX function
+        *head_ref = y;
+        node* temp = y->next;
+        y->next = x->next;
+        x->next = temp;
+    }
+
 
     node* selection_sort(node *head){ //AUX function
         if(head->next == NULL)
@@ -138,11 +142,5 @@ namespace lab5 {
     }
     //AUX functions
 
-    static void swap_nodes(node** head_ref, node* x, node* y, node* prevy){
-        *head_ref = y;
-        node* temp = y->next;
-        y->next = x->next;
-        x->next = temp;
-    }
 
 }
