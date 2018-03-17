@@ -46,5 +46,9 @@ namespace lab5 {
         EXPECT_EQ(1, test3.listSize());
     }
 
+    TEST(fancy_calculator, addtest){
+
+    }
+
 
 }
