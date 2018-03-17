@@ -30,10 +30,20 @@ namespace lab5 {
 
     TEST(linkedlist, insertandappend){
         lab5::linked_list test3;
-        test3.insert("2", 1);
-        test3.insert("4", 2);
-        test3.append("hello world!");
-        EXPECT_EQ(3, test3.listSize());
+        test3.insert("hello", 1);
+        test3.insert("world", 2);
+        test3.insert("!!!!!!!", test3.listSize());
+        test3.insert("boop", test3.listSize());
+        EXPECT_EQ(4, test3.listSize());
+        EXPECT_EQ("world", test3.get_value_at(1));
+    }
+
+    TEST(linkedlist, removetest){
+        lab5::linked_list test3;
+        test3.insert("delete", 1);
+        test3.insert("me",2);
+        test3.remove(1);
+        EXPECT_EQ(1, test3.listSize());
     }
 
 

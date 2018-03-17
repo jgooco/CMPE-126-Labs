@@ -1,5 +1,6 @@
 #include <linked_list.h>
 #include <assert.h>
+#include <iostream>
 namespace lab5 {
     linked_list::linked_list() {
         head = nullptr;
@@ -63,6 +64,9 @@ namespace lab5 {
             head = temp1;
             return;
         }
+        if(location == listSize()){
+            lab5::linked_list::append(input);
+        }
         node* temp2 = head;
         for(unsigned int i =0; i<location-2; i++){
             temp2 = temp2->next;
@@ -78,19 +82,43 @@ namespace lab5 {
             tail = head;
             return;
         }
-        else{
+        if(tail != nullptr) {
             tail->next = temp;
             tail = tail->next;
-
             return;
         }
 
-
-
+        if(tail == nullptr){
+            tail = temp;
+            temp->next = nullptr;
+            tail->next = temp->next;
+            return;
+        }
     }
 
     void linked_list::remove(unsigned location) {
-        node *curr;
+        node *temp = head, *prev = nullptr;
+        if(temp == nullptr)
+            return;
+        if(location == 0){
+            head = temp->next;
+            free(temp);
+            return;
+        }
+        unsigned i = 0;
+        while(temp && i<location){
+            prev= temp;
+            temp = temp->next;
+            i++;
+            if(!temp){
+                std::cout << "Position not found. \n";
+                return;
+            }
+            prev->next = temp->next;
+            free(temp);
+        }
+
+        /*node *curr;
         node *prev;
         curr = head;
         for(int i =1; i<location; i++){
@@ -98,6 +126,7 @@ namespace lab5 {
             curr = curr->next;
         }
         prev->next=curr->next;
+         */
 
     }
 

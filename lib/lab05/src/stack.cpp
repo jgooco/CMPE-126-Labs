@@ -29,12 +29,12 @@ namespace lab5{
     }
 
     std::string stack::top() const {
-        return storage_structure.get_value_at(1);
+        return storage_structure.get_value_at(0);
         //return std::__cxx11::string();
     }
 
     void stack::push(const std::string &data) {
-        storage_structure.insert(data, 0);
+        storage_structure.insert(data, 1);
 
     }
 

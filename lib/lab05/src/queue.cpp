@@ -32,12 +32,12 @@ namespace lab5{
     }
 
     std::string queue::top() const {
-        return storage_structure.get_value_at(1);
+        return storage_structure.get_value_at(0);
         //return std::__cxx11::string();
     }
 
     void queue::enqueue(const std::string &data) {
-        storage_structure.append(data);
+        storage_structure.insert(data, storage_structure.listSize());
     }
 
     void queue::dequeue() {
