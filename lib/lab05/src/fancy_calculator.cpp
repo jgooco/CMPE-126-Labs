@@ -162,7 +162,7 @@ namespace lab5{
     bool is_operator(std::string input_string) {
         if(input_string.length() > 1)
             return false;
-        return operators.count(input_string[0]);
+        return static_cast<bool>(operators.count(input_string[0]));
     }
     int eval(std::string op, int b, int a) {
         switch(op[0]) {

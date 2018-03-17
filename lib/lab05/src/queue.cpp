@@ -11,7 +11,7 @@ namespace lab5{
     }
 
     queue::queue(const queue &original) {
-        this->storage_structure = original.storage_structure;
+        (*this) = original;
     }
 
     queue::~queue() {
@@ -44,7 +44,7 @@ namespace lab5{
     }
 
     void queue::enqueue(const std::string &data) {
-        storage_structure.insert(data, storage_structure.listSize());
+        storage_structure.append(data);
     }
 
     void queue::dequeue() {

@@ -47,7 +47,9 @@ namespace lab5 {
     }
 
     TEST(fancy_calculator, addtest){
-
+        std::string t("9 + 10");
+        lab5::calculator test(t);
+        EXPECT_EQ(19, test.calculate());
     }
 
 

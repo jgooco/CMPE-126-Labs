@@ -9,7 +9,7 @@ namespace lab5{
     }
 
     stack::stack(const stack &original) {
-        this->storage_structure = original.storage_structure;
+        (*this) = original;
     }
 
     stack::~stack() {
