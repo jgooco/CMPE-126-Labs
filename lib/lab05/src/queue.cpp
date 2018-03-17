@@ -19,6 +19,7 @@ namespace lab5{
     }
 
     queue &queue::operator=(const queue &RHS) {
+
         //return <#initializer#>;
     }
 
@@ -31,7 +32,7 @@ namespace lab5{
     }
 
     std::string queue::top() const {
-
+        return storage_structure.get_value_at(1);
         //return std::__cxx11::string();
     }
 
@@ -40,7 +41,7 @@ namespace lab5{
     }
 
     void queue::dequeue() {
-        storage_structure.remove(0);
+        storage_structure.remove(1);
     }
 
     std::ostream& operator<<(std::ostream &stream, queue &RHS) {

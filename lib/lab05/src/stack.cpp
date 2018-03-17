@@ -5,11 +5,11 @@ namespace lab5{
     }
 
     stack::stack(std::string &data) {
-
+        push(data);
     }
 
     stack::stack(const stack &original) {
-
+        this->storage_structure = original.storage_structure;
     }
 
     stack::~stack() {
@@ -21,22 +21,25 @@ namespace lab5{
     }
 
     bool stack::isEmpty() const {
-        return false;
+        return storage_structure.isEmpty();
     }
 
     unsigned stack::queueSize() const {
-        return 0;
+        return storage_structure.listSize();
     }
 
     std::string stack::top() const {
+        return storage_structure.get_value_at(1);
         //return std::__cxx11::string();
     }
 
     void stack::push(const std::string &data) {
+        storage_structure.insert(data, 0);
 
     }
 
     void stack::pop() {
+        storage_structure.remove(1);
 
     }
 

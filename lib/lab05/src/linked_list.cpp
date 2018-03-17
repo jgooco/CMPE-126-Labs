@@ -1,13 +1,14 @@
 #include <linked_list.h>
+#include <assert.h>
 namespace lab5 {
     linked_list::linked_list() {
         head = nullptr;
         tail = nullptr;
-
     }
 
     linked_list::linked_list(std::string &data) {
         head= new node(data);
+        tail= head;
         append(data);
     }
 
@@ -17,12 +18,20 @@ namespace lab5 {
     }
 
     linked_list::~linked_list() {
-        delete[] head;
-        delete[] tail;
+        node* current = head;
+        node* next;
+        while(current != nullptr){
+            next = current->next;
+            delete current;
+            current = next;
+        }
+        head  = nullptr;
+
 
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
+
         //return <#initializer#>;
     }
 
@@ -30,6 +39,8 @@ namespace lab5 {
     bool linked_list::isEmpty() const {
         if (head)
             return false;
+        else
+            return true;
     }
 
     unsigned linked_list::listSize() const {
@@ -44,35 +55,33 @@ namespace lab5 {
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {
-        node *temp = new node(input);
-        temp->data = input;
-        temp->next = nullptr;
+        node* temp1 = new node(input);
+        temp1->data = input;
+        temp1->next = nullptr;
         if(location == 1){
-            temp->next = head;
-            head = temp;
+            temp1->next = head;
+            head = temp1;
             return;
         }
-
-        node* tmp = head;
-        while(tmp->next != NULL){
-            tmp = tmp->next;
+        node* temp2 = head;
+        for(unsigned int i =0; i<location-2; i++){
+            temp2 = temp2->next;
         }
-        temp->next = tmp->next;
-        tmp->next = temp;
-        return;
+        temp1->next = temp2->next;
+        temp2->next = temp1;
     }
 
     void linked_list::append(const std::string input) {
         node *temp = new node(input);
-        temp->data = input;
-        temp->next = nullptr;
         if(head==nullptr){
             head = temp;
+            tail = head;
             return;
         }
-        while(tail->next != nullptr){
-            tail = tail->next;
+        else{
             tail->next = temp;
+            tail = tail->next;
+
             return;
         }
 
@@ -85,7 +94,7 @@ namespace lab5 {
         node *prev;
         curr = head;
         for(int i =1; i<location; i++){
-                prev= curr;
+            prev= curr;
             curr = curr->next;
         }
         prev->next=curr->next;
@@ -137,7 +146,15 @@ namespace lab5 {
 
     }
 
-    std::string linked_list::get_value_at(unsigned location) {
+    std::string linked_list::get_value_at(unsigned location) const {
+        node* current = head;
+        unsigned int count = 0;
+        while(current != nullptr){
+            if(count == location)
+                return(current->data);
+            count++;
+            current = current->next;
+        }
 
     }
     //AUX functions
