@@ -44,6 +44,7 @@ namespace lab5{
     }
 
     std::ostream& operator<<(std::ostream &stream, stack &RHS) {
+
         return stream;
     }
 

@@ -45,10 +45,14 @@ namespace lab5{
     }
 
     std::ostream& operator<<(std::ostream &stream, queue &RHS) {
+        lab5::linked_list storage;
+        stream << storage;
         return stream;
     }
 
     std::istream& operator>>(std::istream &stream, queue &RHS) {
+        lab5::linked_list storage;
+        stream >> storage;
         return stream;
     }
 }

@@ -131,10 +131,18 @@ namespace lab5 {
     }
 
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
+        node *curr = RHS.head;
+        while(curr){
+            stream<<curr->data<<std::endl;
+            curr = curr->next;
+        }
         return stream;
     }
 
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
+        std::string input;
+        stream >> input;
+        RHS.append(input);
         return stream;
     }
     static void swap_nodes(node** head_ref, node* x, node* y, node* prevy){ //AUX function
@@ -146,13 +154,13 @@ namespace lab5 {
 
 
     node* selection_sort(node *head){ //AUX function
-        if(head->next == NULL)
+        if(head->next == nullptr)
             return head;
         node* min = head;
-        node* before_min = NULL;
+        node* before_min = nullptr;
         node* ptr;
 
-        for(ptr=head; ptr->next != NULL; ptr = ptr->next){
+        for(ptr=head; ptr->next != nullptr; ptr = ptr->next){
             if(ptr->next->data < min->data){
                 min = ptr->next;
                 before_min = ptr;
@@ -168,10 +176,9 @@ namespace lab5 {
     }
 
     void linked_list::sort() {
-        node** head_ref;
-        if((*head_ref) == NULL)
+        if((head) == nullptr)
             return;
-        *head_ref = selection_sort(*head_ref);
+        head = selection_sort(head);
 
     }
 
