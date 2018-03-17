@@ -14,7 +14,13 @@ namespace lab5 {
     }
 
     linked_list::linked_list(const linked_list &original) {
-        (*this) = original;
+        head = nullptr;
+        tail = nullptr;
+        node *temp = head;
+        for(int i = 0; i<original.listSize(); i++){
+            append(temp->data);
+            temp = temp->next;
+        }
 
     }
 
@@ -32,9 +38,33 @@ namespace lab5 {
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
-        head = RHS.head;
-        tail = RHS.tail;
-        return *this;
+        if(!isEmpty()){
+            node *tmp = head->next;
+            while(tmp != nullptr){
+                head->next = tmp->next;
+                tmp->next = nullptr;
+                delete tmp;
+                tmp = head->next;
+            }
+            delete head;
+        }
+
+        if(RHS.isEmpty()){
+            head = nullptr;
+            tail = nullptr;
+        }
+        else{
+            head  = new node(RHS.head->data);
+            node *temp = head;
+            node *original2 = RHS.head->next;
+
+            while(original2){
+                temp->next = new node(original2->data);
+                temp = temp->next;
+                original2 = original2->next;
+            }
+            tail = temp;
+        }
 
         //return <#initializer#>;
     }
