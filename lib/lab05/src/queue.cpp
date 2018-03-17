@@ -20,7 +20,7 @@ namespace lab5{
 
     queue &queue::operator=(const queue &RHS) {
         storage_structure = linked_list(RHS.storage_structure);
-        return *this;
+
         //return <#initializer#>;
     }
 

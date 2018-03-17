@@ -18,7 +18,7 @@ namespace lab5{
 
     stack &stack::operator=(const stack &RHS) {
         storage_structure = linked_list(RHS.storage_structure);
-        return *this;
+
         //return <#initializer#>;
     }
 
