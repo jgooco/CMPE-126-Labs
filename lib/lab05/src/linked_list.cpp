@@ -34,8 +34,7 @@ namespace lab5 {
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
         head = RHS.head;
         tail = RHS.tail;
-        if(RHS.isEmpty())
-            throw 42;
+        return *this;
 
         //return <#initializer#>;
     }
