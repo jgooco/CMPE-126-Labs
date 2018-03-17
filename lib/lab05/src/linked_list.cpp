@@ -32,6 +32,10 @@ namespace lab5 {
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
+        head = RHS.head;
+        tail = RHS.tail;
+        if(RHS.isEmpty())
+            throw 42;
 
         //return <#initializer#>;
     }
@@ -117,17 +121,6 @@ namespace lab5 {
             prev->next = temp->next;
             free(temp);
         }
-
-        /*node *curr;
-        node *prev;
-        curr = head;
-        for(int i =1; i<location; i++){
-            prev= curr;
-            curr = curr->next;
-        }
-        prev->next=curr->next;
-         */
-
     }
 
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
@@ -142,7 +135,7 @@ namespace lab5 {
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
         std::string input;
         stream >> input;
-        RHS.append(input);
+        RHS.insert(input, RHS.listSize());
         return stream;
     }
     static void swap_nodes(node** head_ref, node* x, node* y, node* prevy){ //AUX function

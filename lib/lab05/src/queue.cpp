@@ -19,7 +19,14 @@ namespace lab5{
     }
 
     queue &queue::operator=(const queue &RHS) {
+        storage_structure = RHS.storage_structure;
+        if(RHS.isEmpty()){
+            throw 51;
+        }
+        else{
 
+        }
+        return *this;
         //return <#initializer#>;
     }
 
