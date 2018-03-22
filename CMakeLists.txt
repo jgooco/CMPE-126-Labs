@@ -12,6 +12,9 @@ if(APPLE)
     add_definitions(-DGTEST_USE_OWN_TR1_TUPLE)
     add_definitions(-D__GLIBCXX__)
 endif(APPLE)
+if(UNIX)
+    add_definitions(-std=gnu++0x)
+endif(UNIX)
 
 set(SOURCE_FILES main.cpp)
 
