@@ -8,6 +8,8 @@ namespace lab6{
     class doubly_linked_list{
         lab6::node *head;
         lab6::node *tail;
+    private:
+        void deletenode(node *del);
     public:
         doubly_linked_list();
         doubly_linked_list(int input);

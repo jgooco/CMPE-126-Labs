@@ -74,7 +74,7 @@ namespace lab6{
     }
 
     void doubly_linked_list::append(int input) {
-        node *temp = new node(input);
+        auto *temp = new node(input);
         tail = head;
         temp->next = nullptr;
         head = nullptr;
@@ -88,11 +88,10 @@ namespace lab6{
         }
         tail->next = temp;
         temp->prev = tail;
-        return;
     }
 
     void doubly_linked_list::insert(int input, unsigned int location) {
-        node *temp = new node(input);
+        /*node *temp = new node(input);
         if (location == 1) {
             temp->next = head;
             temp->prev = nullptr;
@@ -110,29 +109,39 @@ namespace lab6{
         }
         temp->next = temp2->next;
         temp2->next = temp;
+         */
+        node* current;
+        node *temp = new node(input);
+        if (head == nullptr)
+            head = temp;
+        else if (location == 1) {
+            temp->next = head;
+            temp->next->prev = temp;
+            head = temp;
+        }
+        else{
+            current = head;
+            while(current->next != nullptr && current->next->get_data() < temp->get_data())
+                current = current->next;
+            temp->next = current->next;
+            if (location == size())
+                lab6::doubly_linked_list::append(input);
+            current->next = temp;
+            temp->prev = current;
+        }
+
     }
 
     void doubly_linked_list::remove(unsigned location) {
-        node *temp;
-        if(head == nullptr){
+        if(head == nullptr || location <= 0)
             return;
-        }
-        if (location == 0){
-            head = temp->next;
-        }
-        unsigned i = 0;
-        while(temp && i<location){
-            temp->prev= temp;
-            temp = temp->next;
-            i++;
-            if(!temp){
-                std::cout << "Position not found. \n";
-                return;
-            }
-            temp->prev->next = temp->next;
-            free(temp);
-        }
+        node *current = head;
 
+        for(unsigned int i = 1; current != nullptr && i < location; i++)
+            current = current->next;
+        if(current == nullptr)
+            return;
+        deletenode(current);
     }
 
     doubly_linked_list doubly_linked_list::split(unsigned position) {
@@ -144,7 +153,11 @@ namespace lab6{
     }
 
     void doubly_linked_list::swap(unsigned position_1, unsigned position_2) {
-
+        unsigned temp;
+        temp = position_1;
+        position_1 = position_2;
+        position_2 = temp;
+        delete temp;
     }
 
     void doubly_linked_list::swap_set(unsigned location_1_start, unsigned location_1_end, unsigned location_2_start,
@@ -153,6 +166,13 @@ namespace lab6{
     }
 
     void doubly_linked_list::sort() {
+        node *sorted = nullptr;
+        node *current = head;
+        while(current != nullptr){
+            node* next = current ->next;
+            current->prev = current->next = nullptr;
+
+        }
         // Implement Insertion Sort
     }
 
@@ -179,5 +199,20 @@ namespace lab6{
     std::istream &operator>>(std::istream &stream, doubly_linked_list &RHS) {
 
     }
+
+    void doubly_linked_list::deletenode(node *del){
+        if(head == nullptr || del == nullptr)
+            return;
+        if(head == del)
+            head = del->next;
+        if(del->next != nullptr)
+            del->next->prev = del->prev;
+        if(del->prev != nullptr)
+            del->prev->next = del->next;
+        free(del);
+
+    }
+
+
 }
 
