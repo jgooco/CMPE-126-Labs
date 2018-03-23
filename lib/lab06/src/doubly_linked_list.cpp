@@ -8,6 +8,9 @@ namespace lab6{
     }
 
     doubly_linked_list::doubly_linked_list(int input) {
+        head = new node(input);
+        tail = head;
+        append(input);
 
     }
 
@@ -16,14 +19,37 @@ namespace lab6{
     }
 
     doubly_linked_list::doubly_linked_list(const doubly_linked_list &original) {
+        head = nullptr;
+        tail = nullptr;
+        node *temp = head;
+        for(int i = 0; i<original.size(); i++){
+            append(temp->get_data());
+            temp = temp->next;
+        }
 
     }
 
     doubly_linked_list::~doubly_linked_list() {
+        node* current = head;
+        node* next;
+        while(current != nullptr){
+            next = current->next;
+            delete current;
+            current = next;
+        }
+        head  = nullptr;
 
     }
 
     int doubly_linked_list::get_data(unsigned position) {
+        node* current = head;
+        unsigned int count = 0;
+        while(current != nullptr){
+            if(count == position)
+                current->get_data();
+            count++;
+            current = current->next;
+        }
 
     }
 
@@ -31,7 +57,7 @@ namespace lab6{
 
     }
 
-    unsigned doubly_linked_list::size() {
+    unsigned doubly_linked_list::size()const {
         node* current = head;
         unsigned int count =0;
         while(current != nullptr){
@@ -44,19 +70,46 @@ namespace lab6{
     }
 
     bool doubly_linked_list::is_empty() {
-        if (head)
-            return false;
-        else
-            return true;
+        return head == nullptr;
     }
 
     void doubly_linked_list::append(int input) {
-
+        node *temp = new node(input);
+        tail = head;
+        temp->next = nullptr;
+        head = nullptr;
+        if(head){
+            temp->prev = nullptr;
+            head = temp;
+            return;
+        }
+        while(tail->next != nullptr){
+            tail = tail->next;
+        }
+        tail->next = temp;
+        temp->prev = tail;
+        return;
     }
 
     void doubly_linked_list::insert(int input, unsigned int location) {
-
-
+        node *temp = new node(input);
+        if (location == 1) {
+            temp->next = head;
+            temp->prev = nullptr;
+            if (head != nullptr)
+                head->prev = temp;
+            return;
+        }
+        else if (location == size()){
+            lab6::doubly_linked_list::append(input);
+        }
+        node* temp2 = head;
+        for(unsigned int i =0; i<location-2; i++){
+            temp2->prev = temp;
+            temp2 = temp2->next;
+        }
+        temp->next = temp2->next;
+        temp2->next = temp;
     }
 
     void doubly_linked_list::remove(unsigned location) {
