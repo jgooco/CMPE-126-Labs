@@ -132,11 +132,33 @@ namespace lab6{
     }
 
     void doubly_linked_list::swap(unsigned position_1, unsigned position_2) {
-        unsigned temp;
-        temp = position_1;
-        position_1 = position_2;
-        position_2 = temp;
-        delete temp;
+        if(position_1 == position_2)
+            return;
+        node* prevx = nullptr;
+        node *currx= head;
+        while (currx && currx->get_data() !=position_1){
+            prevx = currx;
+            currx = currx->next;
+        }
+        node *prevy= nullptr;
+        node *curry = head;
+        while (curry && curry->get_data() !=position_2){
+            prevy = curry;
+            curry = curry->next;
+        }
+        if(currx == nullptr || curry == nullptr)
+            return;
+        if(prevx!= nullptr)
+            prevx->next = curry;
+        else
+            head = curry;
+        if(prevy != nullptr)
+            prevy->next = currx;
+        else
+            head = currx;
+        node * temp = curry->next;
+        curry->next = currx->next;
+        currx->next = temp;
     }
 
     void doubly_linked_list::swap_set(unsigned location_1_start, unsigned location_1_end, unsigned location_2_start,
