@@ -113,6 +113,25 @@ namespace lab6{
     }
 
     void doubly_linked_list::remove(unsigned location) {
+        node *temp;
+        if(head == nullptr){
+            return;
+        }
+        if (location == 0){
+            head = temp->next;
+        }
+        unsigned i = 0;
+        while(temp && i<location){
+            temp->prev= temp;
+            temp = temp->next;
+            i++;
+            if(!temp){
+                std::cout << "Position not found. \n";
+                return;
+            }
+            temp->prev->next = temp->next;
+            free(temp);
+        }
 
     }
 
