@@ -91,7 +91,7 @@ namespace lab6{
     }
 
     void doubly_linked_list::insert(int input, unsigned int location) {
-        /*node *temp = new node(input);
+        node *temp = new node(input);
         if (location == 1) {
             temp->next = head;
             temp->prev = nullptr;
@@ -109,27 +109,6 @@ namespace lab6{
         }
         temp->next = temp2->next;
         temp2->next = temp;
-         */
-        node* current;
-        node *temp = new node(input);
-        if (head == nullptr)
-            head = temp;
-        else if (location == 1) {
-            temp->next = head;
-            temp->next->prev = temp;
-            head = temp;
-        }
-        else{
-            current = head;
-            while(current->next != nullptr && current->next->get_data() < temp->get_data())
-                current = current->next;
-            temp->next = current->next;
-            if (location == size())
-                lab6::doubly_linked_list::append(input);
-            current->next = temp;
-            temp->prev = current;
-        }
-
     }
 
     void doubly_linked_list::remove(unsigned location) {
@@ -171,8 +150,11 @@ namespace lab6{
         while(current != nullptr){
             node* next = current ->next;
             current->prev = current->next = nullptr;
+            sortedinsert(current);
+            current = next;
 
         }
+        head = sorted;
         // Implement Insertion Sort
     }
 
@@ -211,6 +193,27 @@ namespace lab6{
             del->prev->next = del->next;
         free(del);
 
+    }
+
+    void doubly_linked_list::sortedinsert(node *new_node){
+        node* current;
+        if (head == nullptr)
+            head = new_node;
+        else if (head ->get_data() >= new_node->get_data()) {
+            new_node->next = head;
+            new_node->next->prev = new_node;
+            head = new_node;
+        }
+        else{
+            current = head;
+            while(current->next != nullptr && current->next->get_data() < new_node->get_data())
+                current = current->next;
+            new_node->next = current->next;
+            if(current->next != nullptr)
+                new_node->next->prev = new_node;
+            current->next = new_node;
+            new_node->prev = current;
+        }
     }
 
 

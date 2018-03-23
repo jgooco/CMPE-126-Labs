@@ -10,6 +10,7 @@ namespace lab6{
         lab6::node *tail;
     private:
         void deletenode(node *del);
+        void sortedinsert(node *new_node);
     public:
         doubly_linked_list();
         doubly_linked_list(int input);
