@@ -2,6 +2,8 @@
 
 namespace lab6{
     doubly_linked_list::doubly_linked_list() {
+        head = nullptr;
+        tail = nullptr;
 
     }
 
@@ -30,11 +32,22 @@ namespace lab6{
     }
 
     unsigned doubly_linked_list::size() {
+        node* current = head;
+        unsigned int count =0;
+        while(current != nullptr){
+            count ++;
+            current = current->next;
+
+        }
+        return count;
 
     }
 
     bool doubly_linked_list::is_empty() {
-
+        if (head)
+            return false;
+        else
+            return true;
     }
 
     void doubly_linked_list::append(int input) {
@@ -42,6 +55,7 @@ namespace lab6{
     }
 
     void doubly_linked_list::insert(int input, unsigned int location) {
+
 
     }
 
