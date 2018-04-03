@@ -2,10 +2,12 @@
 #define CMPE126S18_LABS_TREE_H
 #include "node.h"
 #include <iostream>
+#include <vector>
 
 namespace lab7 {
     class tree {
         node *root;
+        unsigned tree_size;
     public:
         tree();
         tree(const tree& copy);
@@ -18,6 +20,7 @@ namespace lab7 {
 
         int level(int key);
         void path_to(int key);
+        std::vector<int> values_above(int key);
         unsigned size();
         unsigned depth();
         void print();

@@ -54,6 +54,11 @@ namespace lab7 {
 
     }
 
+    // Return a vector with all of the nodes that are greater than the input key in the tree
+    std::vector<int> tree::values_above(int key) {
+
+    }
+
     // Print the tree least to greatest, Include duplicates
     void tree::print() {
 

@@ -1,7 +1,6 @@
 #ifndef CMPE126S18_LABS_NODE_H
 #define CMPE126S18_LABS_NODE_H
 
-#endif //CMPE126S18_LABS_NODE_H
 namespace lab7{
     class node{
     public:
@@ -12,3 +11,4 @@ namespace lab7{
         explicit node(int input_data) : data(input_data), frequency(1), left(nullptr), right(nullptr) {}
     };
 }
+#endif //CMPE126S18_LABS_NODE_H
