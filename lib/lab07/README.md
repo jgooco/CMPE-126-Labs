@@ -26,6 +26,8 @@ The following functions need to be implemented recursively
 
 - `unsigned depth()`
 
+- `std::string to_string()`
+
 - `void print()`
 
 - `tree& operator=(const tree &rhs)`
