@@ -10,17 +10,29 @@ Every function than can be implemented with recursion, needs to be implemented w
 
 The following functions need to be implemented recursively
 - `tree(const tree& copy)`
+
 - `~tree()`
+
 - `void insert(int value)`
+
 - `bool in_tree(int key)` 
+
 - `int get_frequency(int key)`
+
 - `int level(int key)`
+
 - `void path_to(int key)`
+
 - `unsigned depth()`
+
 - `void print()`
+
 - `tree& operator=(const tree &rhs)`
+
 - `friend std::ostream& operator<<(std::ostream& stream, tree& RHS)`
+
 - `tree operator+(const tree &rhs) const`
+
 - `std::vector<int> values_above(int key)`
 
 
