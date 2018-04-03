@@ -9,6 +9,7 @@ You will be writing all of the code for the implementation of a tree. You can us
 Every function than can be implemented with recursion, needs to be implemented with it. Check out the example recursive function `print_gtl()` for an idea of how to accomplish this. Take note of the auxilary functions 
 
 The following functions need to be implemented recursively
+
 - `tree(const tree& copy)`
 
 - `~tree()`
