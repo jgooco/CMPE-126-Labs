@@ -1,10 +1,10 @@
 set(HEADER_FILES
-	src/node.h
-	src/tree.h
+        inc/node.h
+        inc/tree.h
 	)
 
 set(SOURCE_FILES
-    inc/tree.cpp
-	)
+        src/tree.cpp
+        )
 include_directories(inc)
 add_library(lab7_lib STATIC ${SOURCE_FILES} ${HEADER_FILES})
