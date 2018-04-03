@@ -113,8 +113,7 @@ TEST_F(Lab07Fixture, path_to)
     testing::internal::CaptureStdout();
     built_tree->path_to(16);
     output = testing::internal::GetCapturedStdout();
-    EXPECT_EQ(output, std::string("12 -> 14 -> 15 -> 18 -> 16\n").);
-
+    EXPECT_EQ(output, std::string("12 -> 14 -> 15 -> 18 -> 16\n"));
 }
 
 TEST_F(Lab07Fixture, print)
