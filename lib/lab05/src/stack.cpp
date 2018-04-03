@@ -26,7 +26,7 @@ namespace lab5{
         return storage_structure.isEmpty();
     }
 
-    unsigned stack::queueSize() const {
+    unsigned stack::stackSize() const {
         return storage_structure.listSize();
     }
 

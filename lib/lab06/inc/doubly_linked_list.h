@@ -22,7 +22,7 @@ namespace lab6{
         std::vector<int> get_set(unsigned position_from, unsigned position_to);
 
         unsigned size()const;
-        bool is_empty();
+        bool is_empty()const;
 
         void append(int input);
         void insert(int input, unsigned location = 0);

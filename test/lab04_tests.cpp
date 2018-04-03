@@ -1,63 +1,129 @@
 #include "gtest/gtest.h"
-#include <iostream>
-#include "fifo.h"
-#include "lifo.h"
 #include "calculator.h"
+#include <sstream>
 
-namespace lab4 {
-    TEST(calculator,additionTest) {
-        std::string test1("10 + 10");
-        lab4::calculator t1(test1);
-        EXPECT_EQ(20, t1.calculate());
+class Lab04Fixture : public ::testing::Test {
+
+protected:
+    virtual void SetUp() {
+        calculator_UT=new lab4::calculator;
     }
 
-    TEST(calculator, subtest){
-        std::string test2("100 - 20");
-        lab4::calculator t2(test2);
-        EXPECT_EQ(80, t2.calculate());
+    virtual void TearDown() {
+        delete calculator_UT;
     }
 
-    TEST(calculator, multiplictiontest){
-        std::string test3("3 * 9");
-        lab4::calculator t3(test3);
-        EXPECT_EQ(27, t3.calculate());
-    }
+public:
+    lab4::calculator* calculator_UT;
+    std::string input;
+};
 
-    /*TEST(calculator,subtractionTest){
-        lab4::calculator obj2("5-3-6");
-        EXPECT_EQ(-4,obj2.calculate());
-    }
+TEST(crash_test,crash_test_calculator_Test){
+    lab4::calculator *calc_underTest=new lab4::calculator;
+    delete calc_underTest;
+    std::string input("1 + 2");
+    calc_underTest=new lab4::calculator(input);
+    delete calc_underTest;
+}
 
-    TEST(calculator,divisionTest){
-        lab4::calculator obj3("100/20");
-        EXPECT_EQ(5,obj3.calculate());
 
-        //Allows for floating point calculations
-        EXPECT_NO_THROW(obj3.setEQ("12.5/5"));
-        EXPECT_EQ(2.5,obj3.calculate<double>());
-    }
+TEST_F(Lab04Fixture, calc_calculator_simple_test) {
+    delete calculator_UT;
+    input = "1 + 2 + 3 - 3 - 2 - 1";
+    calculator_UT = new lab4::calculator(input);
 
-    TEST(calculator,multiplicationTest){
-        lab4::calculator obj4("2*2*5");
-        EXPECT_EQ(20,obj4.calculate());
-    }
+    EXPECT_EQ(0,calculator_UT->calculate());
 
-    TEST(calculator,parenthesisTest){
-        lab4::calculator obj5("5*(10-4)");
-        EXPECT_EQ(30,obj5.calculate());
-    }
+    delete calculator_UT;
+    input = "1 * 2 * 3 / 3 / 2 / 1";
+    calculator_UT = new lab4::calculator(input);
 
-    TEST(calculator,lotsOfStuffTest){
-        //This combines most of the other tests
-        lab4::calculator obj6("((((5+6/3)*2)-(12--1*(15/3+7)))+2)*(1/4)");
-        EXPECT_EQ(-2,obj6.calculate());
-    }
+    EXPECT_EQ(1,calculator_UT->calculate());
 
-    TEST(calculator,leadingMinusTest){
-        //Testing to make sure code doesn't crash when given a leading -
-        //Other operators aside from '(' are invalid if leading
-        lab4::calculator obj7("-(10+20)");
-        EXPECT_EQ(-30,obj7.calculate());
-    }
-     */
+    delete calculator_UT;
+    input = "2 * 3 + 5 - 1";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(10,calculator_UT->calculate());
+
+    delete calculator_UT;
+    input = "11 + 22 + 33 - 33 - 22 - 11";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(0,calculator_UT->calculate());
+
+    delete calculator_UT;
+    input = "11 * 22 * 33 / 33 / 22 / 11";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(1,calculator_UT->calculate());
+
+    delete calculator_UT;
+    input = "2 * 30 + 54 - 1";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(113,calculator_UT->calculate());
+}
+
+TEST_F(Lab04Fixture, calc_calculator_test) {
+    delete calculator_UT;
+    input = "271 + 32 * ( 91 - 1 ) + 14 / 2";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(3158,calculator_UT->calculate());
+
+    delete calculator_UT;
+    input = "49 * ( 17 * ( 3 + 2 * ( 12 + 2 * ( 45 - 43 ) + 2 ) ) + 1 * ( 6 / 2 ) )";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(32634,calculator_UT->calculate());
+
+    delete calculator_UT;
+    input = "( 1 + ( 1 + ( 1 + ( 1 + ( 1 + ( 1 + ( 1 + ( 1 + ( 1 + ( 1 + 1 ) + 1 ) + 1 ) + 1 ) + 1 ) + 1 ) + 1 ) + 1 ) + 1 ) + 1 )";
+    calculator_UT = new lab4::calculator(input);
+
+    EXPECT_EQ(20,calculator_UT->calculate());
+}
+
+
+TEST_F(Lab04Fixture, calculator_istream_ostream_test) {
+    std::stringstream* stream;
+
+    delete(calculator_UT);
+    input = "1 + 2 + 3";
+    calculator_UT=new lab4::calculator(input);
+
+    testing::internal::CaptureStdout();
+    std::cout << *calculator_UT;
+    std::string output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ("Infix: 1,+,2,+,3\nPostfix: 1,2,+,3,+",output);
+
+    stream = new std::stringstream(input);
+    *stream >> *calculator_UT;
+
+    testing::internal::CaptureStdout();
+    std::cout << *calculator_UT;
+    output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ("Infix: 1,+,2,+,3\nPostfix: 1,2,+,3,+",output);
+
+    delete(calculator_UT);
+    input = "49 * ( 17 * ( 3 + 2 * ( 12 + 2 * ( 45 - 43 ) + 2 ) ) + 1 * ( 6 / 2 ) )";
+    calculator_UT=new lab4::calculator(input);
+
+    testing::internal::CaptureStdout();
+    std::cout << *calculator_UT;
+    output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ("Infix: 49,*,(,17,*,(,3,+,2,*,(,12,+,2,*,(,45,-,43,),+,2,),),+,1,*,(,6,/,2,),)\nPostfix: 49,17,3,2,12,2,45,43,-,*,+,2,+,*,+,*,1,6,2,/,*,+,*",output);
+
+    stream = new std::stringstream(input);
+    *stream >> *calculator_UT;
+
+    testing::internal::CaptureStdout();
+    std::cout << *calculator_UT;
+    output = testing::internal::GetCapturedStdout();
+
+    EXPECT_EQ("Infix: 49,*,(,17,*,(,3,+,2,*,(,12,+,2,*,(,45,-,43,),+,2,),),+,1,*,(,6,/,2,),)\nPostfix: 49,17,3,2,12,2,45,43,-,*,+,2,+,*,+,*,1,6,2,/,*,+,*",output);
 }

@@ -69,7 +69,7 @@ namespace lab6{
 
     }
 
-    bool doubly_linked_list::is_empty() {
+    bool doubly_linked_list::is_empty()const {
         return head == nullptr;
     }
 
@@ -185,7 +185,33 @@ namespace lab6{
     }
 
     doubly_linked_list& doubly_linked_list::operator=(const doubly_linked_list &rhs) {
+        if(!is_empty()){
+            node *tmp = head->next;
+            while(tmp != nullptr){
+                head->next = tmp->next;
+                tmp->next = nullptr;
+                delete tmp;
+                tmp = head->next;
+            }
+            delete head;
+        }
 
+        if(rhs.is_empty()){
+            head = nullptr;
+            tail = nullptr;
+        }
+        else{
+            head  = new node(rhs.head->get_data());
+            node *temp = head;
+            node *original2 = rhs.head->next;
+
+            while(original2){
+                temp->next = new node(original2->get_data());
+                temp = temp->next;
+                original2 = original2->next;
+            }
+            tail = temp;
+        }
     }
 
     doubly_linked_list& doubly_linked_list::operator+=(const doubly_linked_list &rhs) {
@@ -193,7 +219,9 @@ namespace lab6{
     }
 
     bool doubly_linked_list::operator==(const doubly_linked_list &rhs) {
+        if(!is_empty()){
 
+        }
     }
 
     std::ostream &operator<<(std::ostream &stream, doubly_linked_list &RHS) {
