@@ -27,7 +27,7 @@ namespace lab5{
         {
             infix_expression.enqueue(temp);
         }
-        convert_to_postfix(infix_expression);
+
     }
 
     void calculator::convert_to_postfix(lab5::queue infix_expression) {

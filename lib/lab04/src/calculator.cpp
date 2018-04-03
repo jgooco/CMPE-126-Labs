@@ -24,7 +24,6 @@ namespace lab4 {
         {
             infix_expression.enqueue(temp);
         }
-        convert_to_postfix(infix_expression);
     }
     void calculator::convert_to_postfix(lab3::fifo infix_expression) {
         lab3::lifo stack;

@@ -36,12 +36,12 @@ namespace lab5{
     }
 
     void stack::push(const std::string &data) {
-        storage_structure.insert(data, 1);
+        storage_structure.insert(data, 0);
 
     }
 
     void stack::pop() {
-        storage_structure.remove(1);
+        storage_structure.remove(0);
 
     }
 

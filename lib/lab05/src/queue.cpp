@@ -11,7 +11,7 @@ namespace lab5{
     }
 
     queue::queue(const queue &original) {
-        (*this) = original;
+        this->storage_structure = original.storage_structure;
     }
 
     queue::~queue() {
@@ -20,7 +20,6 @@ namespace lab5{
 
     queue &queue::operator=(const queue &RHS) {
         storage_structure = linked_list(RHS.storage_structure);
-
         //return <#initializer#>;
     }
 
@@ -42,7 +41,7 @@ namespace lab5{
     }
 
     void queue::dequeue() {
-        storage_structure.remove(1);
+        storage_structure.remove(0);
     }
 
     std::ostream& operator<<(std::ostream &stream, queue &RHS) {
