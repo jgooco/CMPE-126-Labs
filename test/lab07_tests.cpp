@@ -211,11 +211,15 @@ TEST_F(Lab07Fixture, values_above){
 TEST_F(Lab07Fixture, equals_operator){
     EXPECT_NO_FATAL_FAILURE(tree = built_tree);
     EXPECT_TRUE(built_tree->in_tree(15));
+    EXPECT_TRUE(tree->in_tree(15));
 
     built_tree->remove(10);
 
     EXPECT_FALSE(built_tree->in_tree(15));
     EXPECT_TRUE(tree->in_tree(15));
+
+    EXPECT_FALSE(built_tree->in_tree(21));
+    EXPECT_FALSE(tree->in_tree(21));
 
     tree->insert(21);
 
