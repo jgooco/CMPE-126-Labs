@@ -1,27 +1,18 @@
-#include <iostream>
 #include "../inc/tree.h"
-#include <sstream>
+#include <iostream>
+
 namespace lab7 {
     void clear(node *to_clear);
-
-    void node_print_gtl(node *top);
-    void insert_recursively(node *top, int value);
-    int level_recursively(node* top, int key);
-    bool in_tree_recursively(node* top, int key);
-    unsigned size_recursively(node* top);
-    int get_frequency_recursively(node* top, int key);
-    unsigned depth_recursively(node* top);
-    void path_recursively(node* top, int key);
-    void print_recursively(node* top);
-    bool has_children(node* to_check);
-    node* get_swap(node* top);
-    node* get_node(node* top, int key);
-    node* get_parent(node* top, node* child);
-    node* recursive_node_copy(node* top);
 
     // Construct an empty tree
     tree::tree() {
         root = nullptr;
+        tree_size = 0;
+    }
+
+    // Copy constructor
+    tree::tree(const tree &copy) {
+
     }
 
     // Deconstruct tree
@@ -31,62 +22,94 @@ namespace lab7 {
 
     // Insert
     void tree::insert(int value) {
-        if( root == nullptr ){
-            root = new node(value);
-        }
-        else{
-            insert_recursively(root, value);
-        }
+
+    }
+
+    // Remove key return true if the key is deleted, and false if it isn't in the tree
+    bool tree::remove(int key) {
+
     }
 
     // What level is key on?
     int tree::level(int key) {
-        if(in_tree(key)) return level_recursively(root, key);
-        else return -1;
+
     }
 
     // Print the path to the key, starting with root
     void tree::path_to(int key) {
-        if(in_tree(key)) path_recursively(root, key);
+
     }
 
     // Number of items in the tree
     unsigned tree::size() {
-        if( root == nullptr ) return 0;
-        else return size_recursively(root);
+
     }
 
     // Calculate the depth of the tree, longest string of connections
     unsigned tree::depth() {
-        if( size() <= 1) return 0;
-        else return depth_recursively(root) - 1;
+
     }
 
     // Determine whether the given key is in the tree
     bool tree::in_tree(int key) {
-        return in_tree_recursively(root, key);
+
     }
 
     // Return the number of times that value is in the tree
     int tree::get_frequency(int key) {
-        return get_frequency_recursively(root, key);
+
+    }
+
+    // Return a string of all of the elements in the tree in order
+    std::string tree::to_string() {
+
+    }
+
+    //Use the to string function for the following two functions
+    // Print the tree least to greatest, Include duplicates
+    void tree::print() {
+
     }
 
     // Print the tree least to greatest, Include duplicates
-    void tree::print() {
-        print_recursively(root);
-        std::cout << std::endl;
+    std::ostream &operator<<(std::ostream &stream, tree &RHS) {
+
     }
 
-    void tree::print_gtl() {
-        node_print_gtl(root);
-        std::cout << std::endl;
+    // Operator= Overload. Allowing for copying of trees
+    tree &tree::operator=(const tree &rhs) {
+
     }
 
+    /**************************
+     * Extra credit functions *
+     **************************/
+
+    // Return a vector with all of the nodes that are greater than the input key in the tree
+    std::vector<int> tree::values_above(int key) {
+
+    }
+
+    // Merge rhs into this. Demo to a TA for credit
+    tree tree::operator+(const tree &rhs) const {
+
+    }
+
+    // Balance the tree using any published algorithm. Demo to a TA for credit
+    void tree::balance() {
+
+    }
+
+    /*********************************************************************
+     * Recursion Example                                                 *
+     * Print the linked list from greatest to least using recursion      *
+     *********************************************************************/
+
+    // Auxiliary functions
     void node_print_gtl(node *top) {
-        if(top == nullptr) return;
+        if (top == nullptr) return;
         node_print_gtl(top->right);
-        for(int i = 0; i < top->frequency; i++) std::cout << top->data << " ";
+        for (int i = 0; i < top->frequency; i++) std::cout << top->data << " ";
         node_print_gtl(top->left);
     }
 
@@ -97,211 +120,9 @@ namespace lab7 {
         delete to_clear;
     }
 
-    void insert_recursively(node *top, int value)
-    {
-        //if( top == nullptr ) return;
-        if( value > top->data )
-        {
-            if( top->right == nullptr ) top->right = new node(value);
-            else insert_recursively( top->right, value);
-        }
-        else if( value < top->data )
-        {
-            if( top ->left == nullptr ) top->left = new node(value);
-            else insert_recursively(top->left, value);
-        }
-        else if( value == top->data ) top->frequency++;
-    }
-
-    int level_recursively(node* top, int key)
-    {
-        if( top -> data == key ) return 0;
-        else if (key < top->data) return 1 + level_recursively(top->left, key);
-        else if (key > top->data) return 1 + level_recursively(top->right, key);
-    }
-
-    bool in_tree_recursively(node* top, int key)
-    {
-        if(top == nullptr) return false;
-        else if(top->data == key) return true;
-        else if(key < top->data) return in_tree_recursively(top->left, key);
-        else if(key > top->data) return in_tree_recursively(top->right, key);
-    }
-
-    unsigned size_recursively(node* top)
-    {
-        if(top == nullptr) return 0;
-        else return top->frequency + size_recursively(top->left) + size_recursively(top->right);
-    }
-
-    int get_frequency_recursively(node* top, int key)
-    {
-        if(top == nullptr) return 0;
-        else if(top->data == key) return top->frequency;
-        else if(key < top->data) return get_frequency_recursively(top->left, key);
-        else if(key > top->data) return get_frequency_recursively(top->right, key);
-    }
-
-    unsigned depth_recursively(node* top){
-        if(top == nullptr) return 0;
-        unsigned left = 0, right = 0;
-        left = 1 + depth_recursively(top->left);
-        right = 1 + depth_recursively(top->right);
-        if(left > right) return left;
-        else return right;
-    }
-
-    void path_recursively(node* top, int key){
-        std::cout << top->data;
-        if(top->data == key){
-            std::cout << std::endl;
-            return;
-        }
-        else {
-            std::cout << " -> ";
-            if(key < top->data) path_recursively(top->left, key);
-            else path_recursively(top->right, key);
-        }
-    }
-
-    void print_recursively(node* top)
-    {
-        if(top == nullptr) return;
-        print_recursively(top->left);
-        for(int i = 0; i < top->frequency; i++) std::cout << top->data << " ";
-        print_recursively(top->right);
-    }
-
-    // Remove key
-    bool tree::remove(int key) {
-        if(in_tree(key)){
-            node* to_remove = get_node(root, key);
-            if(to_remove->frequency > 1){
-                to_remove->frequency--;
-                return true;
-            }
-            node* to_remove_parent = get_parent(root, to_remove);
-            if (has_children(to_remove)) {
-                node *to_swap = get_swap(to_remove);
-                node *to_swap_parent = get_parent(root, to_swap);
-
-                if (has_children(to_swap)) to_swap_parent->right = to_swap->left;
-                else to_swap_parent->right = nullptr;
-
-                to_swap->left = to_remove->left;
-                to_swap->right = to_remove->right;
-                if(to_remove_parent != nullptr) {
-                    if (to_remove_parent->left == to_remove) to_remove_parent->left = to_swap;
-                    else to_remove_parent->right = to_swap;
-                }
-                else root = to_swap;
-            }
-            else {
-                if(to_remove_parent != nullptr) {
-                    if (to_remove_parent->left == to_remove) to_remove_parent->left = nullptr;
-                    else to_remove_parent->right = nullptr;
-                }
-                else root = nullptr;
-            }
-            delete to_remove;
-            return true;
-        }
-        else return false;
-    }
-
-    node* get_node(node* top, int key)
-    {
-        if(top->data == key) return top;
-        else if(key < top->data) return get_node(top->left, key);
-        else if(key > top->data) return get_node(top->right, key);
-    }
-
-    node* get_parent(node* top, node* child)
-    {
-        if(top == child) return nullptr;
-        else if(top->left == child || top->right == child) return top;
-        else if(child->data < top->data ) return get_parent(top->left, child);
-        else if(child->data > top->data ) return get_parent(top->right, child);
-    }
-
-    bool has_children(node* to_check){
-        if(to_check->left != nullptr || to_check->right != nullptr) return true;
-        else return false;
-    }
-
-    node* get_swap(node* top){
-        if(top->left){
-            top = top->left;
-            while(top->right) top = top->right;\
-            return top;
-        }
-        else{
-            top = top->right;
-            return top;
-        }
-
-    }
-
-    tree::tree(const tree &copy) {
-
-    }
-
-    void string_recursively(node* top, std::string &built_string)
-    {
-        if(top == nullptr) return;
-        string_recursively(top->left, built_string);
-        for(int i = 0; i < top->frequency; i++){
-            built_string += std::to_string(top->data);
-            built_string += " ";
-        }
-        string_recursively(top->right, built_string);
-    }
-
-    std::string tree::to_string() {
-        auto start = std::string();
-        string_recursively(root, start);
-        return start;
-    }
-
-
-    node* recursive_node_copy(node* top){
-        if(!top) return top;
-        node* to_return = new node(top);
-        if(top->left) to_return->left = recursive_node_copy(top->left);
-        if(top->right) to_return->right = recursive_node_copy(top->right);
-        return to_return;
-    }
-
-    tree &tree::operator=(const tree &rhs) {
-        this->root = recursive_node_copy(rhs.root);
-        this->tree_size = rhs.tree_size;
-    }
-
-    std::ostream &operator<<(std::ostream &stream, tree &RHS) {
-        stream << RHS.to_string();
-        return stream;
-    }
-
-    std::vector<int> recursive_values_above(int key, node* top, std::vector<int> &values_above) {
-        if(top == nullptr) return std::vector<int>();
-        recursive_values_above(key, top->left, values_above);
-        for(int i = 0; top->data > key && i < top->frequency; i++){
-            values_above.push_back(top->data);
-        }
-        recursive_values_above(key, top->right, values_above);
-        return values_above;
-    }
-
-    std::vector<int> tree::values_above(int key) {
-        std::vector<int> to_return = std::vector<int>();
-        return recursive_values_above(key, this->root, to_return);
-    }
-
-    tree tree::operator+(const tree &rhs) const {
-        //return tree();
-    }
-
-    void tree::balance() {
-
+    // Class function
+    void tree::print_gtl() {
+        node_print_gtl(root);
+        std::cout << std::endl;
     }
 }
