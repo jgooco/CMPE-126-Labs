@@ -1,5 +1,6 @@
 #ifndef CMPE126S18_LABS_LIB_LAB9_NODE_H
 #define CMPE126S18_LABS_LIB_LAB9_NODE_H
+
 namespace lab9{
     class node{
     private:
