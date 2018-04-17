@@ -9,6 +9,7 @@ namespace lab7 {
     int level_recurse(node *top, int key);
     unsigned depth_recurse(node* top);
     bool in_tree_recurse(node *top, int key);
+    int get_frequency_recurse(node* top, int key);
 
     // Construct an empty tree
     tree::tree() {
@@ -132,7 +133,18 @@ namespace lab7 {
 
     // Return the number of times that value is in the tree
     int tree::get_frequency(int key) {
+        return get_frequency_recurse(root, key);
+    }
 
+    int get_frequency_recurse(node* top, int key){
+        if(top == nullptr)
+            return 0;
+        else if (top->data == key)
+            return top->frequency;
+        else if (top->data < key)
+            return get_frequency_recurse(top->left, key);
+        else if (top->data > key)
+            return get_frequency_recurse(top->right, key);
     }
 
     // Return a string of all of the elements in the tree in order

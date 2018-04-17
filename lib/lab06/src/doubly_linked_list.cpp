@@ -181,17 +181,11 @@ namespace lab6{
     }
 
     doubly_linked_list doubly_linked_list::operator+(const doubly_linked_list &rhs) const {
-        if(is_empty()){
-            return 0;
-        }
-        if(rhs.is_empty()){
-            return 0;
-        }
-        else{
-            tail->next = rhs.head;
-            rhs.head->prev = tail;
-        }
-
+        doubly_linked_list bob;
+        bob.head = this->head;
+        this->tail->next = rhs.head;
+        bob.tail = rhs.tail;
+        return bob;
     }
 
     doubly_linked_list& doubly_linked_list::operator=(const doubly_linked_list &rhs) {
