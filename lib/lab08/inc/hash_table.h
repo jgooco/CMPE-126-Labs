@@ -14,11 +14,12 @@ namespace lab8{
         unsigned max_size;
         unsigned current_size;
 
-        unsigned hash(std::string to_hash);
+        unsigned hash_1(std::string to_hash);
+        unsigned hash_2(std::string to_hash);
         void expand();
 
     public:
-        hash_table();
+        hash_table(char type);
         ~hash_table();
 
         void insert(std::string key, int value);
