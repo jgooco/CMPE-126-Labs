@@ -219,8 +219,29 @@ namespace lab6{
     }
 
     bool doubly_linked_list::operator==(const doubly_linked_list &rhs) {
-        if(!is_empty()){
-
+        if(is_empty()){
+            std::cout<< "Linked list empty"<< std::endl;
+        }
+        if(rhs.is_empty()){
+            std::cout<< "rhs Linked list empty"<< std::endl;
+        }
+        else{
+            node *temp;
+            node *rtemp;
+            temp = head;
+            rtemp = rhs.head;
+            if(head->get_data()==rhs.head->get_data()){
+                while(temp != nullptr && rtemp != nullptr){
+                    temp = temp->next;
+                    rtemp = rtemp->next;
+                    if (temp->get_data() == rtemp->get_data())
+                        return true;
+                    else
+                        return false;
+                }
+            }
+            else
+                return false;
         }
     }
 

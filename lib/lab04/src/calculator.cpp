@@ -82,13 +82,25 @@ namespace lab4 {
         convert_to_postfix(infix_expression);
     }
     std::istream &operator>>(std::istream &stream, calculator &RHS) {
-        std::string temp;
+        /* std::string temp;
         std::string expression;
         while(stream >> temp) {
             RHS.infix_expression.enqueue(temp);
         }
         RHS.convert_to_postfix(RHS.infix_expression);
         return stream;
+         */
+        std::stringstream input;
+        while(stream)
+            input.put(stream.get());
+        while(!RHS.infix_expression.is_empty())
+            RHS.infix_expression.dequeue();
+        while(!RHS.postfix_expression.is_empty())
+            RHS.postfix_expression.dequeue();
+        //RHS.parse_to_infix(input.str());
+        RHS.convert_to_postfix(RHS.infix_expression);
+        return stream;
+
     }
     int lab4::calculator::calculate() {
         lab3::lifo digits;

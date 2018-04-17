@@ -18,7 +18,9 @@ namespace lab3{
     }
 
     fifo::fifo(const fifo &original) {
-        (*this) = original;
+        fifo_storage = original.fifo_storage;
+        front_index = original.front_index;
+        back_index = original.back_index;
     }
 
     fifo::~fifo() {
