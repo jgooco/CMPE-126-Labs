@@ -15,7 +15,7 @@ namespace lab4 {
             temp = 2;
         return temp;
     }
-    void calculator::parse_to_infix(std::string &input_expression) {
+    void calculator::parse_to_infix(std::string input_expression) {
         std::stringstream ss;
         std::string temp;
         std::string str = "";
@@ -91,13 +91,14 @@ namespace lab4 {
         return stream;
          */
         std::stringstream input;
-        while(stream)
+        while(stream) {
             input.put(stream.get());
+        }
         while(!RHS.infix_expression.is_empty())
             RHS.infix_expression.dequeue();
         while(!RHS.postfix_expression.is_empty())
             RHS.postfix_expression.dequeue();
-        //RHS.parse_to_infix(input.str());
+        RHS.parse_to_infix(input.str());
         RHS.convert_to_postfix(RHS.infix_expression);
         return stream;
 

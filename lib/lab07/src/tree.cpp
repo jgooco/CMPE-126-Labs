@@ -8,6 +8,7 @@ namespace lab7 {
     unsigned size_recurse(node *top);
     int level_recurse(node *top, int key);
     unsigned depth_recurse(node* top);
+    bool in_tree_recurse(node *top, int key);
 
     // Construct an empty tree
     tree::tree() {
@@ -115,7 +116,18 @@ namespace lab7 {
 
     // Determine whether the given key is in the tree
     bool tree::in_tree(int key) {
+        return in_tree_recurse(root, key);
+    }
 
+    bool in_tree_recurse(node *top, int key){
+        if(top == nullptr)
+            return false;
+        else if(top->data == key)
+            return true;
+        else if(key< top->data)
+            return in_tree_recurse(top->left, key);
+        else if(key>top->data)
+            return in_tree_recurse(top->right, key);
     }
 
     // Return the number of times that value is in the tree
