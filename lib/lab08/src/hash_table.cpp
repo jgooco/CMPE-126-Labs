@@ -2,7 +2,7 @@
 
 namespace lab8{
     unsigned hash_table::hash_1(std::string to_hash) {
-        // DJB Hashing Algorithm
+        // DJB2 Hashing Algorithm
         unsigned int hash = 5381;
         for(char c: to_hash){
             hash = ((hash << 5) + hash) + c;
@@ -11,7 +11,7 @@ namespace lab8{
     }
 
     unsigned hash_table::hash_2(std::string to_hash) {
-        // BKDR Hash Function
+        // BKDR Hashing Algorithm
         unsigned int seed = 131;
         unsigned int hash = 0;
         for(char c: to_hash){
@@ -43,14 +43,16 @@ namespace lab8{
 
     }
 
-    void hash_table::insert(std::string key, int value) {
+    bool hash_table::insert(std::string key, int value) {
         // Insert a key according to the defined probing technique
+        return true;
     }
 
     bool hash_table::in_table(std::string key){
         // Checks to see if that key is in the table.
         // Use the specified probing technique
         // Keep collisions in mind
+        return true;
     }
 
     int hash_table::get(std::string key) {
@@ -73,5 +75,6 @@ namespace lab8{
     std::string hash_table::to_string(){
         // Run through the entire array and create a string following this format. The {} brackets aren't part of the return
         // [{array location}]{key_value.key}:{key_value.int}
+    return std::string();
     }
 }
