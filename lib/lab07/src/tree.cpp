@@ -6,6 +6,8 @@ namespace lab7 {
 
     void insert_recurse(node *top, int value);
     unsigned size_recurse(node *top);
+    int level_recurse(node *top, int key);
+    unsigned depth_recurse(node* top);
 
     // Construct an empty tree
     tree::tree() {
@@ -55,7 +57,19 @@ namespace lab7 {
 
     // What level is key on?
     int tree::level(int key) {
+        if(in_tree(key))
+            return level_recurse(root, key);
+        else
+            return -1;
+    }
 
+    int level_recurse(node *top, int key){
+        if(top->data == key)
+            return 0;
+        else if (key<top->data)
+            return 1 + level_recurse(top->left, key);
+        else if(key>top->data)
+            return 1 + level_recurse(top->right, key);
     }
 
     // Print the path to the key, starting with root
@@ -81,7 +95,22 @@ namespace lab7 {
 
     // Calculate the depth of the tree, longest string of connections
     unsigned tree::depth() {
+        if( size() <= 1)
+            return 0;
+        else
+            return depth_recurse(root) - 1;
+    }
 
+    unsigned depth_recurse(node* top){
+        if(top == nullptr)
+            return 0;
+        unsigned  left = 0, right = 0;
+        left = 1+ depth_recurse(top->left);
+        right = 1 + depth_recurse(top->right);
+        if(left > right)
+            return left;
+        else
+            return  right;
     }
 
     // Determine whether the given key is in the tree
