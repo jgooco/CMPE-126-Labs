@@ -5,6 +5,7 @@ namespace lab7 {
     void clear(node *to_clear);
 
     void insert_recurse(node *top, int value);
+    unsigned size_recurse(node *top);
 
     // Construct an empty tree
     tree::tree() {
@@ -66,7 +67,16 @@ namespace lab7 {
     unsigned tree::size() {
         if(root == nullptr)
             return 0;
+        else
+            return size_recurse(root);
 
+    }
+
+    unsigned size_recurse(node *top){
+        if(top == nullptr)
+            return 0;
+        else
+            return top->frequency + size_recurse(top->left) + size_recurse(top->right);
     }
 
     // Calculate the depth of the tree, longest string of connections
