@@ -4,6 +4,8 @@
 namespace lab7 {
     void clear(node *to_clear);
 
+    void insert_recurse(node *top, int value);
+
     // Construct an empty tree
     tree::tree() {
         root = nullptr;
@@ -22,7 +24,27 @@ namespace lab7 {
 
     // Insert
     void tree::insert(int value) {
+        if(root == nullptr){
+            root = new node(value);
+        }
+        else{
+            insert_recurse(root, value);
+        }
+    }
 
+    //Recursive Insert
+    void insert_recurse(node *top, int value){
+        if( value > top->data )
+        {
+            if( top->right == nullptr ) top->right = new node(value);
+            else insert_recurse( top->right, value);
+        }
+        else if( value < top->data )
+        {
+            if( top ->left == nullptr ) top->left = new node(value);
+            else insert_recurse(top->left, value);
+        }
+        else if( value == top->data ) top->frequency++;
     }
 
     // Remove key return true if the key is deleted, and false if it isn't in the tree
@@ -42,6 +64,8 @@ namespace lab7 {
 
     // Number of items in the tree
     unsigned tree::size() {
+        if(root == nullptr)
+            return 0;
 
     }
 
