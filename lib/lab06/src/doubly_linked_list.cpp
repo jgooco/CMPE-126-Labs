@@ -163,7 +163,16 @@ namespace lab6{
 
     void doubly_linked_list::swap_set(unsigned location_1_start, unsigned location_1_end, unsigned location_2_start,
                                       unsigned location_2_end) {
-
+        while(location_1_start <= location_1_end){
+            while(location_2_start <= location_2_end){
+                unsigned temp;
+                temp = location_1_start;
+                location_1_start = location_2_start;
+                location_2_start= temp;
+                location_1_start ++;
+                location_2_start ++;
+            }
+        }
     }
 
     void doubly_linked_list::sort() {
