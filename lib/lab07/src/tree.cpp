@@ -142,9 +142,9 @@ namespace lab7 {
         else if (top->data == key)
             return top->frequency;
         else if (top->data < key)
-            return get_frequency_recurse(top->left, key);
-        else if (top->data > key)
             return get_frequency_recurse(top->right, key);
+        else if (top->data > key)
+            return get_frequency_recurse(top->left, key);
     }
 
     // Return a string of all of the elements in the tree in order

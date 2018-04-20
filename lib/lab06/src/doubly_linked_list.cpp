@@ -128,6 +128,11 @@ namespace lab6{
     }
 
     doubly_linked_list doubly_linked_list::split_set(unsigned position_1, unsigned position_2) {
+        if(position_1 ==position_2){
+            throw;
+        }
+        node *curr1=head;
+        node *prev1= nullptr;
 
     }
 
