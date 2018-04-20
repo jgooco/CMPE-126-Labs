@@ -10,6 +10,8 @@ namespace lab7 {
     unsigned depth_recurse(node* top);
     bool in_tree_recurse(node *top, int key);
     int get_frequency_recurse(node* top, int key);
+    void path_recur(node *top, int key);
+    void print_recur(node *top);
 
     // Construct an empty tree
     tree::tree() {
@@ -76,7 +78,23 @@ namespace lab7 {
 
     // Print the path to the key, starting with root
     void tree::path_to(int key) {
+        if(in_tree(key))
+            path_recur(root, key);
+    }
 
+    void path_recur(node *top, int key){
+        std::cout << top->data;
+        if(top->data == key){
+            std::cout << std::endl;
+            return;
+        }
+        else{
+            std::cout << " -> ";
+            if (key < top->data)
+                path_recur(top->left, key);
+            else
+                path_recur(top->right, key);
+        }
     }
 
     // Number of items in the tree
@@ -155,6 +173,18 @@ namespace lab7 {
     //Use the to string function for the following two functions
     // Print the tree least to greatest, Include duplicates
     void tree::print() {
+        print_recur(root);
+        std::cout<< std::endl;
+    }
+
+    void print_recur(node *top){
+        if(top == nullptr)
+            return;
+        print_recur(top->left);
+        for(int i = 0; i< top->frequency; i++){
+            std:: cout << top->data << " ";
+        }
+        print_recur(top->right);
 
     }
 
