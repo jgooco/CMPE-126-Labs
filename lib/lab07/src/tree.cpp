@@ -12,6 +12,11 @@ namespace lab7 {
     int get_frequency_recurse(node* top, int key);
     void path_recur(node *top, int key);
     void print_recur(node *top);
+    node *get_node(node * top, int key);
+    node *get_parent(node *top, node *child);
+    bool children_exist(node *check);
+    node *get_swap(node * top);
+
 
     // Construct an empty tree
     tree::tree() {
@@ -56,7 +61,84 @@ namespace lab7 {
 
     // Remove key return true if the key is deleted, and false if it isn't in the tree
     bool tree::remove(int key) {
+        if(in_tree(key)){
+            node *remove = get_node(root, key);
+            if(remove->frequency >1 ){
+                remove->frequency --;
+                return true;
+            }
+            node * remove_parent= get_parent(root, remove);
+            if(children_exist(remove)){
+                node * swap = get_swap(remove);
+                node * swap_parents= get_parent(root, swap);
+                if(children_exist(swap))
+                    swap_parents->right = swap->left;
+                else
+                    swap_parents->right = nullptr;
+                swap->left= remove->left;
+                swap->right= remove->right;
+                if(remove_parent != nullptr){
+                    if(remove_parent->left == remove)
+                        remove_parent ->left = swap;
+                    else
+                        remove_parent->right = swap;
+                }
+                else
+                    root = swap;
+            }
+            else{
+                if(remove_parent != nullptr){
+                    if(remove_parent ->left == remove)
+                        remove_parent->left = nullptr;
+                    else
+                        remove_parent->right = nullptr;
+                }
+                else
+                    root = nullptr;
+            }
+            delete remove;
+            return true;
+        }
+        else return false;
+    }
 
+    node *get_node(node * top, int key){
+        if(top->data == key)
+            return top;
+        else if (key<top->data)
+            return get_node(top->left, key);
+        else  if (key>top->data)
+            return get_node(top->right, key);
+    }
+
+    node *get_parent(node *top, node *child){
+        if(top == child)
+            return nullptr;
+        else if (top->left == child || top->right == child)
+            return top;
+        else if (child->data < top->data)
+            return get_parent(top->left, child);
+        else if  (child->data > top->data)
+            return get_parent(top->right, child);
+    }
+
+    bool children_exist(node *check){
+        if(check->left != nullptr || check->right != nullptr)
+            return true;
+        else return false;
+    }
+
+    node *get_swap(node * top){
+        if(top->left){
+            top = top->left;
+            while(top->right)
+                top = top->right;
+            return top;
+        }
+        else{
+            top = top->right;
+            return top;
+        }
     }
 
     // What level is key on?
