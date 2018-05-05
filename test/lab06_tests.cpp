@@ -123,7 +123,7 @@ TEST_F(Lab06Fixture, split_split_set_test) {
         dll_UT->append(i);
     }
 
-    *split_list = dll_UT->split_set(25,75);
+    *split_list = dll_UT->split_set(25,74);
     EXPECT_EQ(50, dll_UT->size());
     EXPECT_EQ(50, split_list->size());
 
@@ -195,6 +195,7 @@ TEST_F(Lab06Fixture, op_plus_op_plus_eq_test) {
     }
 
     delete dll_UT; // make sure a copy is returned in +
+    dll_UT = nullptr;//avoid deleting a bad address is tear down
 
     for (int i = 0; i < 100; ++i) {
         ASSERT_EQ(i,merged_list->get_data(i))<< "failed on iteration: " << i << "\n";
@@ -271,23 +272,23 @@ TEST_F(Lab06Fixture, insertion_extraction_op_test) {
 }
 
 TEST_F(Lab06Fixture, sort_test) {
+    unsigned const list_length_count = 100;
     auto container1 = new std::vector<int>;
     container1->reserve(30);
     //srand((unsigned )time(NULL)); //Used to randomize test, seed with constant to make test repeatable
     srand(0);
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < list_length_count; ++i) {
         int input = rand()%200;
         container1->emplace_back(input);
         dll_UT->append(input);
     }
 
-    //std::cout << "\n unsorted list:\n" << *dll_UT;
-
     std::sort(container1->begin(),container1->end());
     dll_UT->sort();
 
-    for (int i = 0; i < 100; ++i) {
+    for (int i = 0; i < list_length_count; ++i) {
         ASSERT_EQ((*container1)[i],dll_UT->get_data(i));
     }
+
 }
