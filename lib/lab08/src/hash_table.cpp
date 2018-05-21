@@ -2,7 +2,7 @@
 
 namespace lab8{
     unsigned hash_table::hash_1(std::string to_hash) {
-        // DJB2 Hashing Algorithm
+
         unsigned int hash = 5381;
         for(char c: to_hash){
             hash = ((hash << 5) + hash) + c;
@@ -11,7 +11,7 @@ namespace lab8{
     }
 
     unsigned hash_table::hash_2(std::string to_hash) {
-        // BKDR Hashing Algorithm
+
         unsigned int seed = 131;
         unsigned int hash = 0;
         for(char c: to_hash){
@@ -28,7 +28,7 @@ namespace lab8{
 
         for(int i = 0; i < 16; i++){
             if( max_size < PRIMES[i]){
-                max_size = PRIMES[i];
+                max_size = (unsigned int) PRIMES[i];
                 break;
             }
         }
